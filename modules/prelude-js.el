@@ -33,7 +33,7 @@
 ;;; Code:
 
 (require 'prelude-programming)
-(prelude-require-packages '(js2-mode json-mode))
+(prelude-require-packages '(js2-mode json-mode company-tern))
 
 (require 'js2-mode)
 
@@ -49,9 +49,22 @@
        (setq mode-name "JS2")
        (js2-imenu-extras-mode +1))
 
-     (setq prelude-js-mode-hook 'prelude-js-mode-defaults)
+     (defun prelude-more-tern-setup ()
+       "Enable Tern.js"
+       (autoload 'tern-mode "tern.el" nil t)
+       (tern-mode t))
 
-     (add-hook 'js2-mode-hook (lambda () (run-hooks 'prelude-js-mode-hook)))))
+     (defun prelude-more-tern-company ()
+       "Provides company-tern backend"
+       (add-to-list 'company-backends 'company-tern))
+
+     (setq prelude-js-mode-hook 'prelude-js-mode-defaults)
+     (setq prelude-more-tern-setup-hook 'prelude-more-tern-setup)
+     (setq prelide-more-tern-company-hook 'prelude-more-tern-company)
+
+     (add-hook 'js2-mode-hook (lambda () (run-hooks 'prelude-js-mode-hook
+                                                    'prelude-more-tern-setup-hook
+                                                    'prelide-more-tern-company-hook)))))
 
 (provide 'prelude-js)
 
