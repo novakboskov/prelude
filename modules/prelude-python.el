@@ -33,7 +33,7 @@
 
 ;;; Code:
 
-(prelude-require-package 'anaconda-mode)
+(prelude-require-packages '(anaconda-mode pyenv-mode))
 
 (when (boundp 'company-backends)
   (prelude-require-package 'company-anaconda)
@@ -99,12 +99,22 @@
                 #'python-imenu-create-flat-index))
   (add-hook 'post-self-insert-hook
             #'electric-layout-post-self-insert-function nil 'local)
-  (add-hook 'after-save-hook 'prelude-python-mode-set-encoding nil 'local))
+  (add-hook 'after-save-hook 'prelude-python-mode-set-encoding nil 'local)
+
+  ;; Configuring pyenv-mode
+  (pyenv-mode))
 
 (setq prelude-python-mode-hook 'prelude-python-mode-defaults)
 
 (add-hook 'python-mode-hook (lambda ()
                               (run-hooks 'prelude-python-mode-hook)))
+
+(defun projectile-pyenv-mode-set ()
+  "Set pyenv version matching project name.
+Version must be already installed."
+  (pyenv-mode-set (projectile-project-name)))
+
+(add-hook 'projectile-switch-project-hook 'projectile-pyenv-mode-set)
 
 (provide 'prelude-python)
 

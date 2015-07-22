@@ -147,7 +147,7 @@ by Prelude.")
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company-tern zop-to-char zenburn-theme yari yaml-mode web-mode volatile-highlights undo-tree smex smartrep smartparens scss-mode ruby-tools rainbow-mode rainbow-delimiters ov operate-on-number move-text markdown-mode magit key-chord json-mode js2-mode inf-ruby ido-ubiquitous helm-projectile helm-descbinds helm-ag guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist geiser flycheck flx-ido expand-region elixir-mode elisp-slime-nav easy-kill discover-my-major diminish diff-hl company-anaconda cider browse-kill-ring anzu alchemist ace-window))))
+    (solarized-theme zop-to-char zenburn-theme yari yaml-mode web-mode volatile-highlights undo-tree smex smartrep smartparens scss-mode ruby-tools rainbow-mode rainbow-delimiters pyenv-mode ov operate-on-number move-text markdown-mode magit key-chord json-mode js2-mode inf-ruby ido-ubiquitous helm-projectile helm-descbinds helm-ag guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist geiser flycheck flx-ido expand-region elisp-slime-nav easy-kill discover-my-major diminish diff-hl company-tern company-anaconda cider browse-kill-ring anzu alchemist ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
