@@ -33,7 +33,7 @@
 
 ;;; Code:
 
-(prelude-require-packages '(anaconda-mode pyenv-mode))
+(prelude-require-packages '(anaconda-mode virtualenvwrapper))
 
 (when (boundp 'company-backends)
   (prelude-require-package 'company-anaconda)
@@ -101,8 +101,11 @@
             #'electric-layout-post-self-insert-function nil 'local)
   (add-hook 'after-save-hook 'prelude-python-mode-set-encoding nil 'local)
 
-  ;; Configuring pyenv-mode
-  (pyenv-mode))
+  ;; Configuring virtrualenvwrapper.el
+  (require 'virtualenvwrapper)
+  (venv-initialize-interactive-shells) ;; if you want interactive shell support
+  (venv-initialize-eshell) ;; if you want eshell support
+  (setq venv-location '("/media/novak/Storage/Praksa2015/textX/venv")))
 
 (setq prelude-python-mode-hook 'prelude-python-mode-defaults)
 
