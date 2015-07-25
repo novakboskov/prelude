@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2015  Novak Boskov
 
-;; Author: Novak Boskov <novak.boskov@gmail.com>
+;; Author: Novak Boskov <gnovak.boskov@gmail.com>
 ;; Keywords: lisp
 
 ;; This program is free software; you can redistribute it and/or modify
