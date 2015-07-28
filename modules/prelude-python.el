@@ -105,7 +105,8 @@
   (require 'virtualenvwrapper)
   (venv-initialize-interactive-shells) ;; if you want interactive shell support
   (venv-initialize-eshell) ;; if you want eshell support
-  (setq venv-location '("/media/novak/Storage/Praksa2015/textX/venv")))
+  (setq venv-location '("/media/novak/Storage/Praksa2015/textX/venv"
+                        "/media/novak/Storage/Praksa2015/textX/venvPython3")))
 
 (setq prelude-python-mode-hook 'prelude-python-mode-defaults)
 
