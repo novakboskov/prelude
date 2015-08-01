@@ -38,3 +38,4 @@
 (require 'prelude-yaml)
 (require 'prelude-xml)
 (require 'prelude-key-chord)
+(require 'prelude-more-textx)
