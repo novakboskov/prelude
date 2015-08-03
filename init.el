@@ -91,9 +91,9 @@ by Prelude.")
 (prelude-add-subfolders-to-load-path prelude-vendor-dir)
 
 ;; Prelude-more self developed packages add on load-path
-(defvar prelude-more-custom-packages (expand-file-name "custom-packages" prelude-dir)
-  "This is path to prelude-more-custom-packages.")
-(add-to-list 'load-path prelude-more-custom-packages)
+;; (defvar prelude-more-custom-packages (expand-file-name "custom-packages" prelude-dir)
+;;   "This is path to prelude-more-custom-packages.")
+;; (add-to-list 'load-path prelude-more-custom-packages)
 
 ;; reduce the frequency of garbage collection by making it happen on
 ;; each 50MB of allocated data (the default is on every 0.76MB)
