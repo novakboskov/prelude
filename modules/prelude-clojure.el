@@ -33,7 +33,7 @@
 ;;; Code:
 
 (require 'prelude-lisp)
-(prelude-require-packages '(clojure-mode cider))
+(prelude-require-packages '(clojure-mode cider clj-refactor))
 
 (eval-after-load 'clojure-mode
   '(progn
@@ -41,7 +41,13 @@
        (subword-mode +1)
        (run-hooks 'prelude-lisp-coding-hook))
 
-     (setq prelude-clojure-mode-hook 'prelude-clojure-mode-defaults)
+     (defun prelude-more-clojure-mode-defaults ()
+       (clj-refactor-mode 1)
+       (yas-minor-mode 1) ; for adding require/use/import
+       (cljr-add-keybindings-with-prefix "C-c C-;"))
+
+     (setq prelude-clojure-mode-hook '(prelude-clojure-mode-defaults
+                                       prelude-more-clojure-mode-defaults))
 
      (add-hook 'clojure-mode-hook (lambda ()
                                     (run-hooks 'prelude-clojure-mode-hook)))))
