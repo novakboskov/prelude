@@ -39,3 +39,4 @@
 (require 'prelude-xml)
 (require 'prelude-key-chord)
 (require 'prelude-more-textx)
+(require 'prelude-more-adoc)

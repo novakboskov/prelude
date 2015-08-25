@@ -22,3 +22,4 @@ session*
 tramp
 /var/pcache
 custom-packages/
+/.mc-lists.el
