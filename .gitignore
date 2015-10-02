@@ -22,4 +22,5 @@ session*
 tramp
 /var/pcache
 custom-packages/
-/.mc-lists.el
+/.mc-lists.e
+anaconda-mode/
