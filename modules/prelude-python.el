@@ -107,7 +107,8 @@
   (venv-initialize-eshell) ;; if you want eshell support
   (setq venv-location '("/media/novak/Storage/Praksa2015/textX/venv"
                         "/media/novak/Storage/Praksa2015/textX/venvPython3"
-                        "~/venv/py3Numerics/")))
+                        "~/venv/py3Numerics/"
+                        "/opt/anaconda/envs/neuralnets")))
 
 (setq prelude-python-mode-hook 'prelude-python-mode-defaults)
 

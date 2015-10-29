@@ -24,3 +24,4 @@ tramp
 custom-packages/
 /.mc-lists.e
 anaconda-mode/
+.mc-lists.el
