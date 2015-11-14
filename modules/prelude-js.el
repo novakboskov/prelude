@@ -33,7 +33,10 @@
 ;;; Code:
 
 (require 'prelude-programming)
-(prelude-require-packages '(js2-mode json-mode company-tern skewer-mode))
+(prelude-require-packages '(js2-mode json-mode
+                                     company-tern
+                                     skewer-mode
+                                     js2-refactor))
 
 (require 'js2-mode)
 
@@ -64,7 +67,9 @@
 
      (add-hook 'js2-mode-hook (lambda () (run-hooks 'prelude-js-mode-hook
                                                     'prelude-more-tern-setup-hook
-                                                    'prelide-more-tern-company-hook)))))
+                                                    'prelide-more-tern-company-hook)))
+     (add-hook 'js2-mode-hook #'js2-refactor-mode)
+     (js2r-add-keybindings-with-prefix "C-c C-;")))
 
 (provide 'prelude-js)
 
