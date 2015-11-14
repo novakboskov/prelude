@@ -33,7 +33,7 @@
 ;;; Code:
 
 (require 'prelude-programming)
-(prelude-require-packages '(js2-mode json-mode company-tern))
+(prelude-require-packages '(js2-mode json-mode company-tern skewer-mode))
 
 (require 'js2-mode)
 
