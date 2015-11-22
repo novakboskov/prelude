@@ -46,6 +46,9 @@
     (define-key newmap (kbd "C-c -") nil)
     (make-local-variable 'minor-mode-overriding-map-alist)
     (push `(prelude-mode . ,newmap) minor-mode-overriding-map-alist))
+
+  (local-set-key (kbd "C-c C-;") 'pcomplete)
+  (setq org-html-validation-link nil)
 )
 
 (setq prelude-org-mode-hook 'prelude-org-mode-defaults)
