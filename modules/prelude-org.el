@@ -48,6 +48,7 @@
     (push `(prelude-mode . ,newmap) minor-mode-overriding-map-alist))
 
   (local-set-key (kbd "C-c C-;") 'pcomplete)
+  (setq org-agenda-span 56)
   (setq org-html-validation-link nil)
 )
 
