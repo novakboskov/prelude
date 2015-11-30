@@ -25,3 +25,4 @@ custom-packages/
 /.mc-lists.e
 anaconda-mode/
 .mc-lists.el
+/network-security.data
