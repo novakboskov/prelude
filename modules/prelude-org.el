@@ -49,6 +49,7 @@
 
   (local-set-key (kbd "C-c C-;") 'pcomplete)
   (setq org-agenda-span 56)
+  (setq org-agenda-include-diary t)
   (setq org-html-validation-link nil)
 )
 
