@@ -31,6 +31,8 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
+(require 'ob-plantuml)
+(require 'ob-ditaa)
 
 (add-to-list 'auto-mode-alist '("\\.org\\’" . org-mode))
 (global-set-key "\C-cl" 'org-store-link)
@@ -51,7 +53,18 @@
   (setq org-agenda-span 56)
   (setq org-agenda-include-diary t)
   (setq org-html-validation-link nil)
-)
+
+  ;; active Org-babel languages
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(;; other Babel languages
+     (plantuml . t)
+     (ditaa . t)))
+
+  (setq org-plantuml-jar-path
+        (expand-file-name "/media/novak/Storage/Java/plantuml.jar"))
+  (setq org-ditaa-jar-path
+        (expand-file-name "/media/novak/Storage/Java/ditaa0_9.jar")))
 
 (setq prelude-org-mode-hook 'prelude-org-mode-defaults)
 
