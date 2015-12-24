@@ -108,6 +108,7 @@
   (setq venv-location '("/media/novak/Storage/Praksa2015/textX/venv"
                         "/media/novak/Storage/Praksa2015/textX/venvPython3"
                         "~/venv/py3Numerics/"
+                        "~/venv/semantic_web/"
                         "/opt/anaconda/envs/neuralnets")))
 
 (setq prelude-python-mode-hook 'prelude-python-mode-defaults)
