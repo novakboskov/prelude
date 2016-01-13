@@ -28,7 +28,7 @@
 (require 'org-page)
 
 (setq op/repository-directory "/media/novak/Storage/personal_blog/")
-(setq op/site-domain "http://novakboskov.github.io//")
+(setq op/site-domain "http://novakboskov.github.io/")
 (setq op/personal-disqus-shortname "forint")
 
 (provide 'prelude-more-org-pages)
