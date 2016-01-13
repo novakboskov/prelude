@@ -61,6 +61,9 @@
      (plantuml . t)
      (ditaa . t)))
 
+  ;; include export to markdown in org export menu
+  (require 'ox-md nil t)
+
   (setq org-plantuml-jar-path
         (expand-file-name "/media/novak/Storage/Java/plantuml.jar"))
   (setq org-ditaa-jar-path
