@@ -44,7 +44,8 @@
      (defun prelude-more-clojure-mode-defaults ()
        (clj-refactor-mode 1)
        (yas-minor-mode 1) ; for adding require/use/import
-       (cljr-add-keybindings-with-prefix "C-c C-;"))
+       (cljr-add-keybindings-with-prefix "C-c C-;")
+       (setq clojure-align-forms-automatically t))
 
      (setq prelude-clojure-mode-hook '(prelude-clojure-mode-defaults
                                        prelude-more-clojure-mode-defaults))
