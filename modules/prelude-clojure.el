@@ -56,6 +56,7 @@
 (eval-after-load 'cider
   '(progn
      (setq nrepl-log-messages t)
+     (setq cider-repl-display-help-banner nil)
 
      (add-hook 'cider-mode-hook 'eldoc-mode)
 

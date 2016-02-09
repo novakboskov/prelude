@@ -38,7 +38,7 @@
 (require 'prelude-yaml)
 (require 'prelude-xml)
 (require 'prelude-key-chord)
-(require 'prelude-more-textx)
+;; (require 'prelude-more-textx)
 (require 'prelude-more-adoc)
 (require 'prelude-more-diary)
 (require 'prelude-more-org-pages)
