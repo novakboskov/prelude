@@ -63,6 +63,8 @@
 
   ;; include export to markdown in org export menu
   (require 'ox-md nil t)
+  ;; include export to odt in org export menu
+  (require 'ox-odt nil t)
 
   (setq org-plantuml-jar-path
         (expand-file-name "/media/novak/Storage/Java/plantuml.jar"))
