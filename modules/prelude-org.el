@@ -34,6 +34,26 @@
 (require 'ob-plantuml)
 (require 'ob-ditaa)
 
+(defun org-export-translate-to-lang (term-translations &optional lang)
+  "Adds desired translations to `org-export-dictionary'.
+   TERM-TRANSLATIONS is alist consisted of term you want to translate
+   and its corresponding translation, first as :default then as :html and
+   :utf-8. LANG is language you want to translate to, default is Serbian."
+  (let ((lang (or lang "sr")))
+    (dolist (term-translation term-translations)
+      (let* ((term (car term-translation))
+             (translation-default (nth 1 term-translation))
+             (translation-html (nth 2 term-translation))
+             (translation-utf-8 (nth 3 term-translation))
+             (term-list (assoc term org-export-dictionary))
+             (term-langs (cdr term-list)))
+        (setcdr term-list (append term-langs
+                                  (list
+                                   (list lang
+                                         :default translation-default
+                                         :html translation-html
+                                         :utf-8 translation-utf-8))))))))
+
 (add-to-list 'auto-mode-alist '("\\.org\\’" . org-mode))
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
@@ -69,7 +89,13 @@
   (setq org-plantuml-jar-path
         (expand-file-name "/media/novak/Storage/Java/plantuml.jar"))
   (setq org-ditaa-jar-path
-        (expand-file-name "/media/novak/Storage/Java/ditaa0_9.jar")))
+        (expand-file-name "/media/novak/Storage/Java/ditaa0_9.jar"))
+
+  ;; set Serbian translations for org-export
+  (org-export-translate-to-lang '(("Table of Contents"
+                                   "Sadržaj"
+                                   "Sadr&#382;aj"
+                                   "Sadržaj"))))
 
 (setq prelude-org-mode-hook 'prelude-org-mode-defaults)
 
