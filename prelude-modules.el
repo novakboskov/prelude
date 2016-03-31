@@ -42,3 +42,4 @@
 (require 'prelude-more-adoc)
 (require 'prelude-more-diary)
 (require 'prelude-more-org-pages)
+(require 'prelude-more-puml)
