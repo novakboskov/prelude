@@ -24,8 +24,11 @@
 
 ;;; Code:
 
-(prelude-require-package 'docker)
+(prelude-require-packages '(docker dockerfile-mode))
 (require 'docker)
+(require 'dockerfile-mode)
+
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
 (provide 'prelude-more-docker)
 ;;; prelude-more-docker.el ends here
