@@ -95,7 +95,10 @@
   (org-export-translate-to-lang '(("Table of Contents"
                                    "Sadržaj"
                                    "Sadr&#382;aj"
-                                   "Sadržaj"))))
+                                   "Sadržaj")))
+
+  (org-export-translate-to-lang '(("Figure"
+                                   "Slika"))))
 
 (setq prelude-org-mode-hook 'prelude-org-mode-defaults)
 
