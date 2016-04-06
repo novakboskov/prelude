@@ -25,6 +25,9 @@
 ;;; Code:
 
 (prelude-require-packages '(docker dockerfile-mode))
+
+(setq docker-keymap-prefix "C-c *")
+
 (require 'docker)
 (require 'dockerfile-mode)
 
