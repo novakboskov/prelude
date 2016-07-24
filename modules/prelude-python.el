@@ -33,7 +33,7 @@
 
 ;;; Code:
 
-(prelude-require-packages '(anaconda-mode virtualenvwrapper))
+(prelude-require-packages '(anaconda-mode virtualenvwrapper pyimport))
 
 (when (boundp 'company-backends)
   (prelude-require-package 'company-anaconda)
@@ -104,7 +104,10 @@
   ;; Configuring virtrualenvwrapper.el
   (require 'virtualenvwrapper)
   (venv-initialize-interactive-shells) ;; if you want interactive shell support
-  (venv-initialize-eshell)) ;; if you want eshell support
+  (venv-initialize-eshell) ;; if you want eshell support
+
+  (define-key python-mode-map (kbd "C-c C-; i") #'pyimport-insert-missing)
+  (define-key python-mode-map (kbd "C-c C-; u") #'pyimport-remove-unused))
 
 (setq prelude-python-mode-hook 'prelude-python-mode-defaults)
 

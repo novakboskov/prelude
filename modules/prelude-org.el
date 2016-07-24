@@ -60,6 +60,13 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 (setq org-log-done t)
 
+;; custom agenda views
+(setq org-agenda-custom-commands
+      '(("l" . "Show TODOs listed under Leto 2016")
+        ("lf" "collage" tags-todo "L2016+CATEGORY=\"preostali-predmeti\"")
+        ("lp" "side projects" tags-todo "L2016+CATEGORY=\"foodoo-v0\"")
+        ("ll" "all" tags-todo "L2016")))
+
 (defun prelude-org-mode-defaults ()
   (let ((oldmap (cdr (assoc 'prelude-mode minor-mode-map-alist)))
         (newmap (make-sparse-keymap)))
