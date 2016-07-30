@@ -37,6 +37,12 @@
 
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+;; pin desired packages
+;; (setq package-pinned-packages '((cider . "melpa-stable")
+;;                                 (clojure-mode . "melpa-stable")
+;;                                 (clj-refactor . "melpa-stable")))
 ;; set package-user-dir to be relative to Prelude install path
 (setq package-user-dir (expand-file-name "elpa" prelude-dir))
 (package-initialize)
