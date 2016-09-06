@@ -1,9 +1,9 @@
-;;; prelude-more-docker.el --- Emacs Prelude More: Docker mode configuration  -*- lexical-binding: t; -*-
+;;; prelude-more-sparql.el --- Emacs Prelude-more: SPARQL configuration  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2016 Novak Boškov
+;; Copyright (C) 2016  Novak Boskov
 
-;; Author: Novak Boškov <gnovak.boskov@gmail.com>
-;; Keywords: docker
+;; Author: Novak Boskov <gnovak.boskov@gmail.com>
+;; Keywords: languages
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,19 +20,15 @@
 
 ;;; Commentary:
 
-;; Docker mode configuration
+;; Basic SPARQL configuration
 
 ;;; Code:
+(prelude-require-package 'sparql-mode)
 
-(prelude-require-packages '(docker dockerfile-mode docker-api))
+(add-to-list 'auto-mode-alist '("\\.sparql$" . sparql-mode))
+(add-to-list 'auto-mode-alist '("\\.rq$" . sparql-mode))
 
-(setq docker-keymap-prefix "C-c *")
+(add-hook 'sparql-mode-hook 'company-mode)
 
-(require 'docker)
-(require 'dockerfile-mode)
-(require 'docker-api)
-
-(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
-
-(provide 'prelude-more-docker)
-;;; prelude-more-docker.el ends here
+(provide 'prelude-more-sparql)
+;;; prelude-more-sparql.el ends here

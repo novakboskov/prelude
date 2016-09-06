@@ -213,8 +213,12 @@ The body of the advice is in BODY."
 
 ;; flyspell-mode does spell-checking on the fly as you type
 (require 'flyspell)
-(setq ispell-program-name "aspell" ; use aspell instead of ispell
-      ispell-extra-args '("--sug-mode=ultra"))
+(if personal/user-ispell
+    (progn
+      (setq ispell-program-name (car personal/user-ispell))
+      (ispell-change-dictionary (cadr personal/user-ispell) t))
+  (setq ispell-program-name "aspell" ; use aspell instead of ispell
+        ispell-extra-args '("--sug-mode=ultra")))
 
 (defun prelude-enable-flyspell ()
   "Enable command `flyspell-mode' if `prelude-flyspell' is not nil."
@@ -323,14 +327,14 @@ The body of the advice is in BODY."
       (indent-region beg end nil)))
 
 (advise-commands "indent" (yank yank-pop) after
-  "If current mode is one of `prelude-yank-indent-modes',
+                 "If current mode is one of `prelude-yank-indent-modes',
 indent yanked text (with prefix arg don't indent)."
-  (if (and (not (ad-get-arg 0))
-           (not (member major-mode prelude-indent-sensitive-modes))
-           (or (derived-mode-p 'prog-mode)
-               (member major-mode prelude-yank-indent-modes)))
-      (let ((transient-mark-mode nil))
-        (yank-advised-indent-function (region-beginning) (region-end)))))
+                 (if (and (not (ad-get-arg 0))
+                          (not (member major-mode prelude-indent-sensitive-modes))
+                          (or (derived-mode-p 'prog-mode)
+                              (member major-mode prelude-yank-indent-modes)))
+                     (let ((transient-mark-mode nil))
+                       (yank-advised-indent-function (region-beginning) (region-end)))))
 
 ;; abbrev config
 (add-hook 'text-mode-hook 'abbrev-mode)

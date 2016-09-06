@@ -45,3 +45,4 @@
 (require 'prelude-more-puml)
 (require 'prelude-more-docker)
 (require 'prelude-more-wttrin)
+(require 'prelude-more-sparql)

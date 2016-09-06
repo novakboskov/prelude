@@ -63,11 +63,11 @@
 
      (setq prelude-js-mode-hook 'prelude-js-mode-defaults)
      (setq prelude-more-tern-setup-hook 'prelude-more-tern-setup)
-     (setq prelide-more-tern-company-hook 'prelude-more-tern-company)
+     (setq prelude-more-tern-company-hook 'prelude-more-tern-company)
 
      (add-hook 'js2-mode-hook (lambda () (run-hooks 'prelude-js-mode-hook
                                                     'prelude-more-tern-setup-hook
-                                                    'prelide-more-tern-company-hook)))
+                                                    'prelude-more-tern-company-hook)))
      (add-hook 'js2-mode-hook #'js2-refactor-mode)
      (js2r-add-keybindings-with-prefix "C-c C-;")))
 
