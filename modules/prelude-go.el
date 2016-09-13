@@ -73,12 +73,20 @@
        (go-eldoc-setup)
 
        ;; CamelCase aware editing operations
-       (subword-mode +1))
+       (subword-mode +1)
+
+       ;; Use gogetdoc over godoc for godoc-at-point
+       (custom-set-variables '(godoc-at-point-function #'godoc-gogetdoc)))
 
      (setq prelude-go-mode-hook 'prelude-go-mode-defaults)
 
      (add-hook 'go-mode-hook (lambda ()
                                (run-hooks 'prelude-go-mode-hook)))))
+
+;; Use golint
+(exec-path-from-shell-copy-env "GOPATH")
+(add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
+(require 'golint)
 
 (provide 'prelude-go)
 ;;; prelude-go.el ends here
