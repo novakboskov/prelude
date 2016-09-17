@@ -27,6 +27,8 @@
 (prelude-require-package 'exec-path-from-shell)
 
 (exec-path-from-shell-initialize)
+(setq user-full-name "Novak Boškov")
+(setq user-mail-address "gnovak.boskov@gmail.com")
 
 (provide 'novak-personal-premodules)
 ;;; novak-personal-premodules.el ends here

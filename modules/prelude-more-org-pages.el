@@ -30,6 +30,7 @@
 (setq op/repository-directory "/media/novak/Storage/personal_blog/")
 (setq op/site-domain "http://novakboskov.github.io/")
 (setq op/personal-disqus-shortname "forint")
+(setq op/personal-github-link "https://github.com/novakboskov")
 
 (provide 'prelude-more-org-pages)
 ;;; prelude-more-org-pages.el ends here

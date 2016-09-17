@@ -35,7 +35,8 @@
                             company-go
                             go-eldoc
                             go-projectile
-                            gotest))
+                            gotest
+                            go-dlv))
 
 (require 'go-projectile)
 
