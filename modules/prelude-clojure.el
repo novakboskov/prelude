@@ -67,7 +67,13 @@
      (setq prelude-cider-repl-mode-hook 'prelude-cider-repl-mode-defaults)
 
      (add-hook 'cider-repl-mode-hook (lambda ()
-                                       (run-hooks 'prelude-cider-repl-mode-hook)))))
+                                       (run-hooks 'prelude-cider-repl-mode-hook)))
+
+     (defun set-cider-cljs-lein-repl-to-figwheel ()
+       (interactive)
+       (setq cider-cljs-lein-repl "(do (require 'figwheel-sidecar.repl-api)
+                                          (figwheel-sidecar.repl-api/start-figwheel!)
+                                          (figwheel-sidecar.repl-api/cljs-repl))"))))
 
 (provide 'prelude-clojure)
 
