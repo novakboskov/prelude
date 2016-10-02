@@ -31,6 +31,7 @@
 (setq op/site-domain "http://novakboskov.github.io/")
 (setq op/personal-disqus-shortname "forint")
 (setq op/personal-github-link "https://github.com/novakboskov")
+(setq op/personal-avatar "https://avatars2.githubusercontent.com/u/6290049?v=3&s=466")
 
 (provide 'prelude-more-org-pages)
 ;;; prelude-more-org-pages.el ends here

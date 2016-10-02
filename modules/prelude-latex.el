@@ -61,6 +61,10 @@
 
 ;; use pdflatex
 (setq TeX-PDF-mode t)
+;; prelude-more
+(setq TeX-source-correlate-mode t)
+(setq TeX-source-correlate-start-server t)
+(setq TeX-view-program-selection '((output-pdf "Okular")))
 
 ;; sensible defaults for OS X, other OSes should be covered out-of-the-box
 (when (eq system-type 'darwin)
