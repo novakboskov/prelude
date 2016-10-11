@@ -61,7 +61,7 @@
 
 ;; use pdflatex
 (setq TeX-PDF-mode t)
-;; prelude-more
+;; prelude-more synctex
 (setq TeX-source-correlate-mode t)
 (setq TeX-source-correlate-start-server t)
 (setq TeX-view-program-selection '((output-pdf "Okular")))
@@ -85,7 +85,10 @@
   (smartparens-mode +1)
   (case prelude-latex-fast-math-entry
     (LaTeX-math-mode (LaTeX-math-mode 1))
-    (cdlatex (turn-on-cdlatex))))
+    (cdlatex (turn-on-cdlatex)))
+
+  ;; prelude-more
+  (define-key TeX-mode-map (kbd "C-c c TAB") #'tex-bibtex-file))
 
 (setq prelude-latex-mode-hook 'prelude-latex-mode-defaults)
 

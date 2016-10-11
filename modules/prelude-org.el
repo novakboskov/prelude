@@ -33,6 +33,7 @@
 ;;; Code:
 (require 'ob-plantuml)
 (require 'ob-ditaa)
+(require 'ob-python)
 
 (defun org-export-translate-to-lang (term-translations &optional lang)
   "Adds desired translations to `org-export-dictionary'.
@@ -85,8 +86,17 @@
   (org-babel-do-load-languages
    'org-babel-load-languages
    '(;; other Babel languages
+     (emacs-lisp . t)
      (plantuml . t)
-     (ditaa . t)))
+     (ditaa . t)
+     (python . t)))
+
+  (defun prelude-org-more-is-save-to-evaluate? (lang code)
+    (pcase lang
+      ('python nil)
+      ('plantuml nil)
+      ('dita nil)))
+  (setq org-confirm-babel-evaluate #'prelude-org-more-is-save-to-evaluate?)
 
   ;; include export to markdown in org export menu
   (require 'ox-md nil t)
