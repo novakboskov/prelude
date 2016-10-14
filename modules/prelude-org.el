@@ -34,6 +34,7 @@
 (require 'ob-plantuml)
 (require 'ob-ditaa)
 (require 'ob-python)
+(require 'ox-latex)
 
 (defun org-export-translate-to-lang (term-translations &optional lang)
   "Adds desired translations to `org-export-dictionary'.
@@ -90,6 +91,14 @@
      (plantuml . t)
      (ditaa . t)
      (python . t)))
+
+  ;; use minted to export listings in latex
+  (setq org-latex-listings 'minted)
+  (add-to-list 'org-latex-packages-alist '("" "minted"))
+  (setq org-latex-pdf-process
+        '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
   (defun prelude-org-more-is-save-to-evaluate? (lang code)
     (pcase lang
