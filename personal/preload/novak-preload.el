@@ -4,3 +4,6 @@
 (global-linum-mode t)
 ;; Each command that sets a bookmark to save bookmarks
 (setq bookmark-save-flag 1)
+
+;; Set ispell backend
+(setq personal/user-ispell '("hunspell" "en_US"))

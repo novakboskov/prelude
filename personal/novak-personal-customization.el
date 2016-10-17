@@ -1,9 +1,9 @@
-;;; novak-preload-theme.el --- Personal theme setttings  -*- lexical-binding: t; -*-
+;;; novak-personal-customization.el --- Novak personal customization  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2015  Novak Boskov
+;; Copyright (C) 2016  Novak Boškov
 
-;; Author: Novak Boskov;; Configuring solarized-theme <gnovak.boskov@gmail.com>
-;; Keywords: themes
+;; Author: Novak Boškov <gnovak.boskov@gmail.com>
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,12 +20,11 @@
 
 ;;; Commentary:
 
-;; Theme specific setup in preload phase. Themes are manually installed and it is expected to produce errors when clone frash copy of prelude-more. "Unable to find theme file" is espected.
+;; Novak personal customization
 
 ;;; Code:
 
-;; (disable-theme 'zenburn)
-;; (setq prelude-theme 'solarized-dark)
+(put 'projectile-test-suffix-function 'safe-local-variable (lambda (_) t))
 
-(provide 'novak-preload-theme)
-;;; novak-preload-theme.el ends here
+(provide 'novak-personal-customization)
+;;; novak-personal-customization.el ends here
