@@ -23,7 +23,7 @@
 ;; Some basic configuration for puml-mode.
 
 ;;; Code:
-(prelude-require-package 'puml-mode)
+(prelude-require-package 'plantuml-mode)
 
 ;; (setq puml-plantuml-jar-path
 ;;       (expand-file-name "/media/novak/Storage/Java/plantuml.jar"))
@@ -33,5 +33,5 @@
 ;; (add-to-list 'auto-mode-alist '("\\.puml\\'" . puml-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . puml-mode))
 
-(provide 'prelude-more-puml)
+(provide 'prelude-more-plantuml)
 ;;; prelude-mode-puml.el ends here

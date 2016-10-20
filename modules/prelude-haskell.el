@@ -33,7 +33,8 @@
 ;;; Code:
 
 (require 'prelude-programming)
-(prelude-require-packages '(haskell-mode))
+(prelude-require-packages '(haskell-mode
+                            intero))
 
 (eval-after-load 'haskell-mode
   '(progn
@@ -46,7 +47,8 @@
      (setq prelude-haskell-mode-hook 'prelude-haskell-mode-defaults)
 
      (add-hook 'haskell-mode-hook (lambda ()
-                                    (run-hooks 'prelude-haskell-mode-hook)))))
+                                    (run-hooks 'prelude-haskell-mode-hook)))
+     (add-hook 'haskell-mode-hook 'intero-mode)))
 
 (provide 'prelude-haskell)
 
