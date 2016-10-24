@@ -46,3 +46,5 @@
 (require 'prelude-more-docker)
 (require 'prelude-more-wttrin)
 (require 'prelude-more-sparql)
+(require 'prelude-more-w3m)
+(require 'prelude-more-helm-dash)

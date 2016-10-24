@@ -34,7 +34,9 @@
 
 (require 'prelude-programming)
 (prelude-require-packages '(haskell-mode
-                            intero))
+                            intero
+                            hindent
+                            hlint-refactor))
 
 (eval-after-load 'haskell-mode
   '(progn
@@ -47,8 +49,14 @@
      (setq prelude-haskell-mode-hook 'prelude-haskell-mode-defaults)
 
      (add-hook 'haskell-mode-hook (lambda ()
-                                    (run-hooks 'prelude-haskell-mode-hook)))
-     (add-hook 'haskell-mode-hook 'intero-mode)))
+                                    (run-hooks 'prelude-haskell-mode-hook)
+                                    (setq-local helm-dash-docsets '("Haskell"))))
+     (add-hook 'haskell-mode-hook 'intero-mode)
+     (add-hook 'haskell-mode-hook 'hindent-mode)
+     (add-hook 'haskell-mode-hook 'hlint-refactor-mode)
+
+     (define-key haskell-mode-map (kbd "C-c C-d") 'haskell-hoogle-lookup-from-local)
+     (define-key haskell-mode-map (kbd "C-u C-c C-d") 'helm-dash-at-point)))
 
 (provide 'prelude-haskell)
 
