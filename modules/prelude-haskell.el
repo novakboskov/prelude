@@ -36,7 +36,8 @@
 (prelude-require-packages '(haskell-mode
                             intero
                             hindent
-                            hlint-refactor))
+                            hlint-refactor
+                            hamlet-mode))
 
 (eval-after-load 'haskell-mode
   '(progn

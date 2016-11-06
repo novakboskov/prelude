@@ -134,6 +134,9 @@ that can occur between two notifications.  The default is
 
 (setq erc-autojoin-channels-alist '(("freenode.net" "#prelude-emacs" "#projectile")))
 
+;; prelude more
+(add-to-list 'erc-modules 'notifications)
+
 (provide 'prelude-erc)
 
 ;;; prelude-erc.el ends here

@@ -7,3 +7,6 @@
 
 ;; Set ispell backend
 (setq personal/user-ispell '("hunspell" "en_US"))
+
+;; set default erc nick
+(setq erc-nick "novakboskov")
