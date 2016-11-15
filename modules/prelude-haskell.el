@@ -45,7 +45,8 @@
        (subword-mode +1)
        (eldoc-mode +1)
        (haskell-indentation-mode +1)
-       (interactive-haskell-mode +1))
+       (interactive-haskell-mode +1)
+       (setq haskell-stylish-on-save t))
 
      (setq prelude-haskell-mode-hook 'prelude-haskell-mode-defaults)
 
@@ -57,7 +58,16 @@
      (add-hook 'haskell-mode-hook 'hlint-refactor-mode)
 
      (define-key haskell-mode-map (kbd "C-c C-d") 'haskell-hoogle-lookup-from-local)
-     (define-key haskell-mode-map (kbd "C-u C-c C-d") 'helm-dash-at-point)))
+     (define-key haskell-mode-map (kbd "C-u C-c C-d") 'helm-dash-at-point)
+     (define-key haskell-mode-map (kbd "C-c C-; r") 'intero-apply-suggestions)
+     (define-key haskell-mode-map (kbd "C-c C-; t") 'intero-type-at)
+
+     ;; This is prelude-more temporal solution until I grasp how
+     ;; `intero-mode-map' should work.
+     (defun intero-type-at-insert ()
+       (interactive)
+       (intero-type-at t))
+     (define-key haskell-mode-map (kbd "C-u C-c C-; t") 'intero-type-at-insert)))
 
 (provide 'prelude-haskell)
 
