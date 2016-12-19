@@ -33,7 +33,10 @@
 ;;; Code:
 
 (require 'prelude-lisp)
-(prelude-require-packages '(clojure-mode cider clj-refactor))
+(prelude-require-packages '(clojure-mode
+                            cider
+                            clj-refactor
+                            kibit-helper))
 
 (eval-after-load 'clojure-mode
   '(progn
@@ -41,11 +44,20 @@
        (subword-mode +1)
        (run-hooks 'prelude-lisp-coding-hook))
 
+     (defun kibit-clojure-prelude-more (arg)
+       (interactive "P")
+       (if arg
+           (kibit)
+         (kibit-current-file)))
+
      (defun prelude-more-clojure-mode-defaults ()
        (clj-refactor-mode 1)
        (yas-minor-mode 1) ; for adding require/use/import
        (cljr-add-keybindings-with-prefix "C-c C-;")
-       (setq clojure-align-forms-automatically t))
+       (setq clojure-align-forms-automatically t)
+       ;; kibit integration
+       (global-set-key (kbd "C-x C-`") 'kibit-accept-proposed-change)
+       (define-key clojure-mode-map (kbd "C-c C-; k") #'kibit-clojure-prelude-more))
 
      (setq prelude-clojure-mode-hook '(prelude-clojure-mode-defaults
                                        prelude-more-clojure-mode-defaults))
