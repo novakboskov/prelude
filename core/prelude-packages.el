@@ -1,6 +1,6 @@
 ;;; prelude-packages.el --- Emacs Prelude: default package selection.
 ;;
-;; Copyright © 2011-2016 Bozhidar Batsov
+;; Copyright © 2011-2017 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -43,6 +43,20 @@
 ;; (setq package-pinned-packages '((cider . "melpa-stable")
 ;;                                 (clojure-mode . "melpa-stable")
 ;;                                 (clj-refactor . "melpa-stable")))
+
+;; accessing a package repo over https on Windows is a no go, so we
+;; fallback to http there
+(if (eq system-type 'windows-nt)
+    (add-to-list 'package-archives
+                 '("melpa" . "http://melpa.org/packages/") t)
+  (add-to-list 'package-archives
+               '("melpa" . "https://melpa.org/packages/") t))
+
+;; load the pinned packages
+(let ((prelude-pinned-packages-file (expand-file-name "prelude-pinned-packages.el" prelude-dir)))
+  (if (file-exists-p prelude-pinned-packages-file)
+      (load prelude-pinned-packages-file)))
+
 ;; set package-user-dir to be relative to Prelude install path
 (setq package-user-dir (expand-file-name "elpa" prelude-dir))
 (package-initialize)
@@ -59,6 +73,7 @@
     diff-hl
     diminish
     easy-kill
+    editorconfig
     epl
     expand-region
     flycheck
