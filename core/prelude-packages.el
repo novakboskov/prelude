@@ -35,15 +35,6 @@
 (require 'cl)
 (require 'package)
 
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-;; pin desired packages
-;; (setq package-pinned-packages '((cider . "melpa-stable")
-;;                                 (clojure-mode . "melpa-stable")
-;;                                 (clj-refactor . "melpa-stable")))
-
 ;; accessing a package repo over https on Windows is a no go, so we
 ;; fallback to http there
 (if (eq system-type 'windows-nt)
@@ -51,6 +42,16 @@
                  '("melpa" . "http://melpa.org/packages/") t)
   (add-to-list 'package-archives
                '("melpa" . "https://melpa.org/packages/") t))
+
+(add-to-list 'package-archives
+             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+
+;; pin desired packages
+(setq package-pinned-packages '((projectile . "melpa-stable")
+                                (puml-mode . "melpa-stable")))
+;; (setq package-pinned-packages '((cider . "melpa-stable")
+;;                                 (clojure-mode . "melpa-stable")
+;;                                 (clj-refactor . "melpa-stable")))
 
 ;; load the pinned packages
 (let ((prelude-pinned-packages-file (expand-file-name "prelude-pinned-packages.el" prelude-dir)))
