@@ -46,7 +46,8 @@
        (eldoc-mode +1)
        (haskell-indentation-mode +1)
        (interactive-haskell-mode +1)
-       (setq haskell-stylish-on-save t))
+       (setq haskell-stylish-on-save t)
+       (setq haskell-hoogle-command nil))
 
      (setq prelude-haskell-mode-hook 'prelude-haskell-mode-defaults)
 
@@ -57,8 +58,9 @@
      (add-hook 'haskell-mode-hook 'hindent-mode)
      (add-hook 'haskell-mode-hook 'hlint-refactor-mode)
 
-     (define-key haskell-mode-map (kbd "C-c C-d") 'haskell-hoogle-lookup-from-local)
-     (define-key haskell-mode-map (kbd "C-u C-c C-d") 'helm-dash-at-point)
+     (define-key haskell-mode-map (kbd "C-c C-d") 'haskell-hoogle)
+     (define-key haskell-mode-map (kbd "C-u C-c C-d") 'haskell-hoogle-lookup-from-local)
+     (define-key haskell-mode-map (kbd "C-u C-u C-c C-d") 'helm-dash-at-point)
      (define-key haskell-mode-map (kbd "C-c C-; r") 'intero-apply-suggestions)
      (define-key haskell-mode-map (kbd "C-c C-; t") 'intero-type-at)
 
