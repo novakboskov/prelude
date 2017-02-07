@@ -46,13 +46,6 @@
 (add-to-list 'package-archives
              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 
-;; pin desired packages
-(setq package-pinned-packages '((projectile . "melpa-stable")
-                                (puml-mode . "melpa-stable")))
-;; (setq package-pinned-packages '((cider . "melpa-stable")
-;;                                 (clojure-mode . "melpa-stable")
-;;                                 (clj-refactor . "melpa-stable")))
-
 ;; load the pinned packages
 (let ((prelude-pinned-packages-file (expand-file-name "prelude-pinned-packages.el" prelude-dir)))
   (if (file-exists-p prelude-pinned-packages-file)

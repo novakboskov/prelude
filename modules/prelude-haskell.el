@@ -63,6 +63,9 @@
      (define-key haskell-mode-map (kbd "C-u C-u C-c C-d") 'helm-dash-at-point)
      (define-key haskell-mode-map (kbd "C-c C-; r") 'intero-apply-suggestions)
      (define-key haskell-mode-map (kbd "C-c C-; t") 'intero-type-at)
+     (define-key haskell-mode-map (kbd "C-c C-; a i") 'haskell-add-import)
+     (define-key haskell-mode-map (kbd "C-c C-; n i") 'haskell-navigate-imports-go)
+     (define-key haskell-mode-map (kbd "C-u C-c C-; n i") 'haskell-navigate-imports-return)
 
      ;; This is prelude-more temporal solution until I grasp how
      ;; `intero-mode-map' should work.
