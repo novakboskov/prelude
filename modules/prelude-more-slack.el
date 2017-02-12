@@ -31,18 +31,29 @@
 
 (exec-path-from-shell-copy-env "SLACK_APP_CLIENT_ID")
 (exec-path-from-shell-copy-env "SLACK_APP_CLIENT_SECRET")
-(exec-path-from-shell-copy-env "SLACK_AUTH_TOKEN")
-
+(exec-path-from-shell-copy-env "SLACK_APP_AUTH_TOKEN")
 (slack-register-team
  :name "ftn-rni"
  :default t
  :client-id (getenv "SLACK_APP_CLIENT_ID")
  :client-secret (getenv "SLACK_APP_CLIENT_SECRET")
- :token (getenv "SLACK_AUTH_TOKEN")
+ :token (getenv "SLACK_APP_AUTH_TOKEN")
  :subscribed-channels '(distributed_prog
                         general
                         klub-doktoranata
                         random
                         rekreacija))
+
+(exec-path-from-shell-copy-env "SLACK_APP2_CLIENT_ID")
+(exec-path-from-shell-copy-env "SLACK_APP2_CLIENT_SECRET")
+(exec-path-from-shell-copy-env "SLACK_APP2_AUTH_TOKEN")
+(slack-register-team
+ :name "foodoo-team"
+ :client-id (getenv "SLACK_APP2_CLIENT_ID")
+ :client-secret (getenv "SLACK_APP2_CLIENT_SECRET")
+ :token (getenv "SLACK_APP2_AUTH_TOKEN")
+ :subscribed-channels '(bugs
+                        general
+                        random))
 
 (provide 'prelude-more-slack)

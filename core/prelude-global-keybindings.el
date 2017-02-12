@@ -112,6 +112,9 @@
 (global-set-key (kbd "s-.") 'avy-goto-word-or-subword-1)
 (global-set-key (kbd "s-w") 'ace-window)
 
+;; prelude-more visit url in browser
+(global-set-key (kbd "C-c v") 'browse-url-at-point)
+
 (provide 'prelude-global-keybindings)
 
 ;;; prelude-global-keybindings.el ends here
