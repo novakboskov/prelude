@@ -113,7 +113,7 @@
 (global-set-key (kbd "s-w") 'ace-window)
 
 ;; prelude-more visit url in browser
-(global-set-key (kbd "C-c v") 'browse-url-at-point)
+(global-set-key (kbd "s-b") 'browse-url-at-point)
 
 (provide 'prelude-global-keybindings)
 
