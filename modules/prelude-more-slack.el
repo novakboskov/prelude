@@ -56,4 +56,15 @@
                         general
                         random))
 
+(exec-path-from-shell-copy-env "SLACK_APP3_CLIENT_ID")
+(exec-path-from-shell-copy-env "SLACK_APP3_CLIENT_SECRET")
+(exec-path-from-shell-copy-env "SLACK_APP3_AUTH_TOKEN")
+(slack-register-team
+ :name "barn-lang"
+ :client-id (getenv "SLACK_APP3_CLIENT_ID")
+ :client-secret (getenv "SLACK_APP3_CLIENT_SECRET")
+ :token (getenv "SLACK_APP3_AUTH_TOKEN")
+ :subscribed-channels '(general
+                        random))
+
 (provide 'prelude-more-slack)
