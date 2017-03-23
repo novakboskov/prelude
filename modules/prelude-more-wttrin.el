@@ -28,5 +28,7 @@
 
 (setq wttrin-default-cities '("Novi Sad" "New York"))
 
+(setq wttrin-default-accept-language '("Accept-Language" . "en-US"))
+
 (provide 'prelude-more-wttrin)
 ;;; prelude-more-wttrin.el ends here
