@@ -24,6 +24,8 @@
 
 ;;; Code:
 
+(prelude-require-package 'textx-mode)
+
 (require 'prelude-programming)
 (require 'textx-mode)
 
