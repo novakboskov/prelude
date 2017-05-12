@@ -33,18 +33,31 @@
 ;;; Code:
 
 (require 'prelude-programming)
+;; prelude-more cmake-ide configuration
+(prelude-require-packages '(rtags
+                            irony
+                            cmake-ide))
 
 (defun prelude-c-mode-common-defaults ()
   (setq c-default-style "k&r"
         c-basic-offset 4)
   (c-set-offset 'substatement-open 0))
 
+(defun prelude-more-cmake-ide ()
+  (cmake-ide-setup)
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'objc-mode-hook 'irony-mode)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+
 (setq prelude-c-mode-common-hook 'prelude-c-mode-common-defaults)
+(setq prelude-more-cmake-ide-hook 'prelude-more-cmake-ide)
 
 ;; this will affect all modes derived from cc-mode, like
 ;; java-mode, php-mode, etc
 (add-hook 'c-mode-common-hook (lambda ()
-                                (run-hooks 'prelude-c-mode-common-hook)))
+                                (run-hooks 'prelude-c-mode-common-hook)
+                                (run-hooks 'prelude-more-cmake-ide-hook)))
 
 (defun prelude-makefile-mode-defaults ()
   (whitespace-toggle-options '(tabs))

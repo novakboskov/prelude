@@ -33,10 +33,11 @@
 ;;; Code:
 
 (require 'prelude-programming)
-(prelude-require-packages '(js2-mode json-mode
-                                     company-tern
-                                     skewer-mode
-                                     js2-refactor))
+(prelude-require-packages '(js2-mode
+                            json-mode
+                            company-tern
+                            js2-refactor
+                            indium))
 
 (require 'js2-mode)
 

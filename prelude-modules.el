@@ -51,3 +51,4 @@
 (require 'prelude-more-slack)
 (require 'prelude-more-time-management)
 (require 'prelude-more-debugging)
+(require 'prelude-more-hackernews)
