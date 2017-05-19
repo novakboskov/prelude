@@ -44,6 +44,9 @@
   (c-set-offset 'substatement-open 0))
 
 (defun prelude-more-cmake-ide ()
+  ;; hot fix, rtags should be already loaded here
+  (require 'rtags)
+  (rtags-enable-standard-keybindings c-mode-base-map "C-c C-;")
   (cmake-ide-setup)
   (add-hook 'c++-mode-hook 'irony-mode)
   (add-hook 'c-mode-hook 'irony-mode)
