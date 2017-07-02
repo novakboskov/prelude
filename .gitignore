@@ -31,3 +31,4 @@ anaconda-mode/
 .emacs.desktop.lock
 emojis/
 /irony/*
+/personal/personal-system-setting.el
