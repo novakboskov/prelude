@@ -36,7 +36,9 @@
 ;; prelude-more cmake-ide configuration
 (prelude-require-packages '(rtags
                             irony
-                            cmake-ide))
+                            cmake-ide
+                            cmake-mode
+                            flycheck-clang-analyzer))
 
 (defun prelude-c-mode-common-defaults ()
   (setq c-default-style "k&r"
@@ -55,7 +57,12 @@
 
   (define-key c-mode-map (kbd "C-c C-k") 'cmake-ide-compile)
   (define-key c-mode-map (kbd "M-?")
-    (lambda () (interactive) (manual-entry (current-word)))))
+    (lambda () (interactive) (manual-entry (current-word))))
+
+  ;; flycheck-clang-analyzer setup
+  (with-eval-after-load 'flycheck
+    (require 'flycheck-clang-analyzer)
+    (flycheck-clang-analyzer-setup)))
 
 (setq prelude-c-mode-common-hook 'prelude-c-mode-common-defaults)
 (setq prelude-more-cmake-ide-hook 'prelude-more-cmake-ide)

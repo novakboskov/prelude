@@ -24,7 +24,7 @@
 
 ;;; Code:
 
-(setq diary-file "/media/novak/Storage/org/diary/diary")
+(setq diary-file "~/Storage/org/diary/diary")
 (setq holiday-bahai-holidays nil)
 (setq holiday-islamic-holidays nil)
 (setq holiday-hebrew-holidays nil)
