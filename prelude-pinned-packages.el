@@ -133,4 +133,5 @@
         ;; (zenburn-theme . "melpa-stable")
         ;; (zop-to-char . "melpa-stable")
         ;; (plantuml-mode . "melpa-stable")
+        ;; (cmake-ide . "melpa-stable")
         ))

@@ -33,7 +33,10 @@
 
 ;;; Code:
 
-(prelude-require-packages '(anaconda-mode virtualenvwrapper pyimport))
+(prelude-require-packages '(anaconda-mode
+                            virtualenvwrapper
+                            pyimport
+                            flycheck-mypy))
 
 (when (boundp 'company-backends)
   (prelude-require-package 'company-anaconda)
@@ -41,6 +44,7 @@
 
 (require 'electric)
 (require 'prelude-programming)
+(require 'flycheck-mypy)
 
 ;; Copy pasted from ruby-mode.el
 (defun prelude-python--encoding-comment-required-p ()
