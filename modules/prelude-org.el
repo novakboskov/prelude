@@ -114,7 +114,7 @@
   (require 'ox-odt nil t)
 
   (setq org-plantuml-jar-path
-        (expand-file-name "/media/novak/Storage/Java/plantuml.jar"))
+        (expand-file-name "/home/novak/Storage/Java/plantuml.jar"))
   (setq org-ditaa-jar-path
         (expand-file-name "/media/novak/Storage/Java/ditaa0_9.jar"))
 
