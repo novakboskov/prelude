@@ -45,7 +45,9 @@
        (subword-mode +1)
        (eldoc-mode +1)
        (haskell-indentation-mode +1)
-       (interactive-haskell-mode +1)
+       ;; prelude-more
+       (intero-global-mode 1)
+       ;; (interactive-haskell-mode +1)
        (setq haskell-stylish-on-save t)
        (setq haskell-hoogle-command nil))
 
