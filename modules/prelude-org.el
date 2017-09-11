@@ -125,7 +125,16 @@
                                    "Sadržaj")))
 
   (org-export-translate-to-lang '(("Figure"
-                                   "Slika"))))
+                                   "Slika")))
+
+  ;; other latex classes available during export
+  (add-to-list 'org-latex-classes
+               '("memoir" "\\documentclass{memoir}"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
 (setq prelude-org-mode-hook 'prelude-org-mode-defaults)
 
