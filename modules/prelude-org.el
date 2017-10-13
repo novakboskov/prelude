@@ -31,6 +31,8 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
+(prelude-require-package 'ox-reveal)
+
 (require 'ob-plantuml)
 (require 'ob-ditaa)
 (require 'ob-python)
