@@ -40,6 +40,7 @@
                             indium))
 
 (require 'js2-mode)
+(require 'indium)
 
 (add-to-list 'auto-mode-alist '("\\.js\\'"    . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.pac\\'"   . js2-mode))
@@ -70,7 +71,12 @@
                                                     'prelude-more-tern-setup-hook
                                                     'prelude-more-tern-company-hook)))
      (add-hook 'js2-mode-hook #'js2-refactor-mode)
-     (js2r-add-keybindings-with-prefix "C-c C-;")))
+     (add-hook 'js-mode-hook #'indium-interaction-mode)
+
+     (js2r-add-keybindings-with-prefix "C-c C-;")
+     (define-key js2-mode-map (kbd "C-c C-b") 'indium-eval-buffer)
+     (define-key js2-mode-map (kbd "C-c C-; t r") 'tern-rename-variable)
+     (define-key js2-mode-map (kbd "C-c C-r") 'indium-eval-region)))
 
 (provide 'prelude-js)
 
