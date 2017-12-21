@@ -53,3 +53,4 @@
 (require 'prelude-more-time-management)
 (require 'prelude-more-debugging)
 (require 'prelude-more-hackernews)
+(require 'prelude-more-languagetool)

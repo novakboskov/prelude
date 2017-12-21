@@ -47,9 +47,5 @@
                      (member (file-name-nondirectory buffer-file-name) prelude-prezto-files))
                 (sh-set-shell "zsh"))))
 
-;; prelude-more pick up bash aliases
-(setq shell-file-name "bash")
-(setq shell-command-switch "-ic")
-
 (provide 'prelude-shell)
 ;;; prelude-shell.el ends here
