@@ -24,7 +24,11 @@
 
 ;;; Code:
 
+(prelude-require-package 'company-coq)
+
 (load "~/.emacs.d/lisp/PG/generic/proof-site.el")
+
+(add-hook 'coq-mode-hook #'company-coq-mode)
 
 (provide 'prelude-more-proofgeneral)
 ;;; prelude-more-proofgeneral.el ends here
