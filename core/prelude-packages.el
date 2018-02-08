@@ -46,6 +46,11 @@
 (add-to-list 'package-archives
              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 
+
+;; Add latest org-mode archive
+(add-to-list 'package-archives
+             '("org" . "http://orgmode.org/elpa/") t)
+
 ;; load the pinned packages
 (let ((prelude-pinned-packages-file (expand-file-name "prelude-pinned-packages.el" prelude-dir)))
   (if (file-exists-p prelude-pinned-packages-file)

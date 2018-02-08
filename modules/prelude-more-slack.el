@@ -32,6 +32,7 @@
 (exec-path-from-shell-copy-env "SLACK_APP_CLIENT_ID")
 (exec-path-from-shell-copy-env "SLACK_APP_CLIENT_SECRET")
 (exec-path-from-shell-copy-env "SLACK_APP_AUTH_TOKEN")
+
 (slack-register-team
  :name "ftn-rni"
  :default t
