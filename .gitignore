@@ -35,3 +35,6 @@ emojis/
 network-security.data
 /lisp/
 org-gcal/
+prelude-cheatsheet.el
+prelude-cheatsheet.aux
+prelude-cheatsheet.log
