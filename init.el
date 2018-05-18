@@ -1,6 +1,6 @@
 ;;; init.el --- Prelude's configuration entry point.
 ;;
-;; Copyright (c) 2011-2017 Bozhidar Batsov
+;; Copyright (c) 2011-2018 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: http://batsov.com/prelude
@@ -118,9 +118,9 @@ by Prelude.")
 (require 'prelude-editor)
 (require 'prelude-global-keybindings)
 
-;; OSX specific settings
+;; macOS specific settings
 (when (eq system-type 'darwin)
-  (require 'prelude-osx))
+  (require 'prelude-macos))
 
 (message "Loading Prelude-more's premodules...")
 

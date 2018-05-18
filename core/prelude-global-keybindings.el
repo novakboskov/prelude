@@ -1,6 +1,6 @@
 ;;; prelude-global-keybindings.el --- Emacs Prelude: some useful keybindings.
 ;;
-;; Copyright © 2011-2017 Bozhidar Batsov
+;; Copyright © 2011-2018 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -110,7 +110,10 @@
 
 (global-set-key (kbd "C-c j") 'avy-goto-word-or-subword-1)
 (global-set-key (kbd "s-.") 'avy-goto-word-or-subword-1)
+
+;; improved window navigation with ace-window
 (global-set-key (kbd "s-w") 'ace-window)
+(global-set-key [remap other-window] 'ace-window)
 
 ;; prelude-more visit url in browser
 (global-set-key (kbd "s-b") 'browse-url-at-point)
