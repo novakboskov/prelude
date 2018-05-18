@@ -27,7 +27,8 @@
 (prelude-require-package 'org-page)
 (require 'org-page)
 
-(setq op/repository-directory "/media/novak/Storage/personal_blog/")
+(setq op/repository-directory
+      "/home/novak/Storage/PERSONAL/novakboskov.github.io/blog/")
 (setq op/site-domain "http://novakboskov.github.io/")
 (setq op/personal-disqus-shortname "forint")
 (setq op/personal-github-link "https://github.com/novakboskov")
