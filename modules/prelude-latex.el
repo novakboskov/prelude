@@ -32,7 +32,9 @@
 
 ;;; Code:
 
-(prelude-require-packages '(auctex cdlatex))
+(prelude-require-packages '(auctex
+                            cdlatex
+                            latex-preview-pane))
 (require 'smartparens-latex)
 ;; for case
 (require 'cl)
@@ -88,12 +90,16 @@
     (cdlatex (turn-on-cdlatex)))
 
   ;; prelude-more
-  (define-key TeX-mode-map (kbd "C-c c TAB") #'tex-bibtex-file))
+  (define-key TeX-mode-map (kbd "C-c c TAB") #'tex-bibtex-file)
+  (latex-preview-pane-mode 1))
 
 (setq prelude-latex-mode-hook 'prelude-latex-mode-defaults)
 
 (add-hook 'LaTeX-mode-hook (lambda ()
                              (run-hooks 'prelude-latex-mode-hook)))
+
+(add-hook 'doc-view-mode-hook (lambda ()
+                                (run-hooks 'prelude-latex-more-doc-view-defaults)))
 
 (provide 'prelude-latex)
 
