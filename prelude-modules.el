@@ -57,3 +57,4 @@
 (require 'prelude-more-proofgeneral)
 (require 'prelude-more-org-gcal)
 (require 'prelude-more-doc-view-mode)
+(require 'prelude-more-pdf-tools)
