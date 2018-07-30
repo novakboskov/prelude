@@ -158,6 +158,12 @@ by Prelude.")
  ;; greet the use with some useful tip
  (run-at-time 5 nil 'prelude-tip-of-the-day))
 
+;; run emacs deamon from this instance if one is not currently
+;; running
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
 ;;; init.el ends here
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

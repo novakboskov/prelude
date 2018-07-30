@@ -27,5 +27,10 @@
 (prelude-require-package 'pdf-tools)
 (require 'pdf-tools)
 
+(pdf-tools-install)
+
+;; Bookmarking especially useful when reading large PDFs
+(global-set-key (kbd "C-x r ;") 'helm-bookmarks)
+
 (provide 'prelude-more-pdf-tools)
 ;;; prelude-more-pdf-tools.el ends here
