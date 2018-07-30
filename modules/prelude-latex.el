@@ -33,8 +33,7 @@
 ;;; Code:
 
 (prelude-require-packages '(auctex
-                            cdlatex
-                            latex-preview-pane))
+                            cdlatex))
 (require 'smartparens-latex)
 ;; for case
 (require 'cl)
@@ -64,7 +63,7 @@
 ;; prelude-more synctex
 (setq TeX-source-correlate-mode t)
 (setq TeX-source-correlate-start-server t)
-(setq TeX-view-program-selection '((output-pdf "Okular")))
+(setq TeX-view-program-selection '((output-pdf "PDF Tools")))
 
 ;; sensible defaults for macOS, other OSes should be covered out-of-the-box
 (when (eq system-type 'darwin)
@@ -88,16 +87,12 @@
     (cdlatex (turn-on-cdlatex)))
 
   ;; prelude-more
-  (define-key TeX-mode-map (kbd "C-c c TAB") #'tex-bibtex-file)
-  (latex-preview-pane-mode 1))
+  (define-key TeX-mode-map (kbd "C-c c TAB") #'tex-bibtex-file))
 
 (setq prelude-latex-mode-hook 'prelude-latex-mode-defaults)
 
 (add-hook 'LaTeX-mode-hook (lambda ()
                              (run-hooks 'prelude-latex-mode-hook)))
-
-(add-hook 'doc-view-mode-hook (lambda ()
-                                (run-hooks 'prelude-latex-more-doc-view-defaults)))
 
 (provide 'prelude-latex)
 
