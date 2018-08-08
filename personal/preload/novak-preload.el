@@ -1,5 +1,5 @@
 ;; face font size
-(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :height 130)
 ;; line numbers mode globally
 ;; (global-linum-mode t)
 ;; Each command that sets a bookmark to save bookmarks

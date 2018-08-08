@@ -33,10 +33,13 @@
 ;;; Code:
 
 (prelude-require-packages '(auctex
-                            cdlatex))
+                            cdlatex
+                            helm-bibtex))
 (require 'smartparens-latex)
 ;; for case
 (require 'cl)
+;; prelude-more
+(require 'helm-bibtex)
 
 (eval-after-load "company"
   '(progn
@@ -87,7 +90,14 @@
     (cdlatex (turn-on-cdlatex)))
 
   ;; prelude-more
-  (define-key TeX-mode-map (kbd "C-c c TAB") #'tex-bibtex-file))
+  (define-key TeX-mode-map (kbd "C-c c TAB") #'tex-bibtex-file)
+  (global-set-key (kbd "C-c c [") #'helm-bibtex)
+  (turn-on-reftex)
+  (add-to-list 'TeX-command-list
+               '("Latex Make"
+                 "latexmk -pdflatex='pdflatex -file-line-error -synctex=1' -pdf %s"
+                 TeX-run-TeX))
+  (setq TeX-command-default "Latex Make"))
 
 (setq prelude-latex-mode-hook 'prelude-latex-mode-defaults)
 
