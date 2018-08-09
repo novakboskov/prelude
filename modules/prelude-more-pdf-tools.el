@@ -29,6 +29,9 @@
 
 (pdf-tools-install)
 
+;; Prevent blinking of whole pdf document
+(add-to-list 'beacon-dont-blink-major-modes 'pdf-view-mode)
+
 ;; Bookmarking especially useful when reading large PDFs
 (global-set-key (kbd "C-x r ;") 'helm-bookmarks)
 
