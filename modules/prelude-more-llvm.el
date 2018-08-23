@@ -24,10 +24,14 @@
 
 ;;; Code:
 (setq llvm/llvm-path "~/llvm")
+(setq llvm/dwarf-path "../misc")
 
-(setq load-path (cons (expand-file-name (concat llvm/llvm-path "/utils/emacs")) load-path))
+(setq load-path (let ((with-llvm
+                       (cons (expand-file-name (concat llvm/llvm-path "/utils/emacs")) load-path)))
+                  (cons (expand-file-name llvm/dwarf-path) with-llvm)))
 (require 'llvm-mode)
 (require 'tablegen-mode)
+(require 'dwarf-mode)
 
 (provide 'prelude-more-llvm)
 ;;; llvm.el ends here
