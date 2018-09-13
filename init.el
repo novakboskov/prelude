@@ -162,7 +162,8 @@ by Prelude.")
 ;; running
 (require 'server)
 (unless (server-running-p)
-  (server-start))
+  (server-start)
+  (setq server-kill-new-buffers nil))
 
 ;;; init.el ends here
 (custom-set-variables
