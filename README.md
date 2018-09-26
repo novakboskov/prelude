@@ -12,11 +12,12 @@ library to the mix. The final product offers an easy to use Emacs
 configuration for Emacs newcomers and lots of additional power for
 Emacs power users.
 
-Prelude is compatible **ONLY with GNU Emacs 24.4+**. In general you're
+Prelude is compatible **ONLY with GNU Emacs 25.1+**. In general you're
 advised to always run Prelude with the latest Emacs - currently
-**25.2**.
+**26.1**.
 
 You can support the development of Prelude via
+[PayPal](https://www.paypal.me/bbatsov),
 [Salt](https://bountysource.com/teams/prelude),
 [Patreon](https://www.patreon.com/bbatsov) and
 [Liberapay](https://liberapay.com/bbatsov/donate).
@@ -343,7 +344,6 @@ Keybinding         | Description
 <kbd>C-c . #</kbd> | Convert integer at point to specified base. Default is 10.
 <kbd>C-c . %</kbd> | Replace integer at point with another specified integer.
 <kbd>C-c . '</kbd> | Perform arithmetic operations on integer at point. User specifies the operator.
-<kbd>Super-g</kbd> | Toggle between God mode and non-God mode
 <kbd>Super-r</kbd> | Recent files
 <kbd>Super-j</kbd> | Join lines
 <kbd>Super-k</kbd> | Kill whole line
@@ -526,15 +526,16 @@ line:
 Or you can use another theme altogether by adding something in `personal/preload` like:
 
 ```lisp
-(prelude-require-package 'solarized-theme)
-(setq prelude-theme 'solarized-dark)
+(setq prelude-theme 'tango)
 ```
 
-**Note** [Solarized](https://github.com/bbatsov/zenburn-emacs) is not
-available by default - you'll have to install it from MELPA first,
-therefore the need for `prelude-require-package`.  Alternatively you
-can manually install the package like this - `M-x package-install RET
-solarized-theme`.
+**Note** To use a non-built-in theme, like [Solarized](https://github.com/bbatsov/zenburn-emacs),
+you'll have to install it from MELPA first by `M-x package-install RET solarized-theme`. Then add
+
+``` lisp
+(setq prelude-theme 'solarized-dark)
+```
+in `personal/preload`.
 
 Finally, if you don't want any theme at all, you can add this to your
 `personal/preload`:

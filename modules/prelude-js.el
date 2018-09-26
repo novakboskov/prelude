@@ -46,37 +46,16 @@
 (add-to-list 'auto-mode-alist '("\\.pac\\'"   . js2-mode))
 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
 
-(eval-after-load 'js2-mode
-  '(progn
-     (defun prelude-js-mode-defaults ()
-       ;; electric-layout-mode doesn't play nice with smartparens
-       (setq-local electric-layout-rules '((?\; . after)))
-       (setq mode-name "JS2")
-       (js2-imenu-extras-mode +1))
+(with-eval-after-load 'js2-mode
+  (defun prelude-js-mode-defaults ()
+    ;; electric-layout-mode doesn't play nice with smartparens
+    (setq-local electric-layout-rules '((?\; . after)))
+    (setq mode-name "JS2")
+    (js2-imenu-extras-mode +1))
 
-     (defun prelude-more-tern-setup ()
-       "Enable Tern.js"
-       (autoload 'tern-mode "tern.el" nil t)
-       (tern-mode t))
+  (setq prelude-js-mode-hook 'prelude-js-mode-defaults)
 
-     (defun prelude-more-tern-company ()
-       "Provides company-tern backend"
-       (add-to-list 'company-backends 'company-tern))
-
-     (setq prelude-js-mode-hook 'prelude-js-mode-defaults)
-     (setq prelude-more-tern-setup-hook 'prelude-more-tern-setup)
-     (setq prelude-more-tern-company-hook 'prelude-more-tern-company)
-
-     (add-hook 'js2-mode-hook (lambda () (run-hooks 'prelude-js-mode-hook
-                                                    'prelude-more-tern-setup-hook
-                                                    'prelude-more-tern-company-hook)))
-     (add-hook 'js2-mode-hook #'js2-refactor-mode)
-     (add-hook 'js-mode-hook #'indium-interaction-mode)
-
-     (js2r-add-keybindings-with-prefix "C-c C-;")
-     (define-key js2-mode-map (kbd "C-c C-b") 'indium-eval-buffer)
-     (define-key js2-mode-map (kbd "C-c C-; t r") 'tern-rename-variable)
-     (define-key js2-mode-map (kbd "C-c C-r") 'indium-eval-region)))
+  (add-hook 'js2-mode-hook (lambda () (run-hooks 'prelude-js-mode-hook))))
 
 (provide 'prelude-js)
 

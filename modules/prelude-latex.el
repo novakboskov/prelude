@@ -41,10 +41,9 @@
 ;; prelude-more
 (require 'helm-bibtex)
 
-(eval-after-load "company"
-  '(progn
-     (prelude-require-packages '(company-auctex))
-     (company-auctex-init)))
+(with-eval-after-load "company"
+  (prelude-require-packages '(company-auctex))
+  (company-auctex-init))
 
 (defcustom prelude-latex-fast-math-entry 'LaTeX-math-mode
   "Method used for fast math symbol entry in LaTeX."
