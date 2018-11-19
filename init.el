@@ -130,6 +130,10 @@ by Prelude.")
     (load prelude-more-premodules)
   (message "Missing prelude-more-premodules file %s" prelude-more-premodules))
 
+;; Linux specific settings
+(when (eq system-type 'gnu/linux)
+  (require 'prelude-linux))
+
 (message "Loading Prelude's modules...")
 
 ;; the modules
