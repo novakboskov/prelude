@@ -1,5 +1,5 @@
 ;; face font size
-(set-face-attribute 'default nil :height 130)
+(set-face-attribute 'default nil :height 110)
 ;; line numbers mode globally
 ;; (global-linum-mode t)
 ;; Each command that sets a bookmark to save bookmarks
@@ -8,7 +8,10 @@
 (setq bookmark-save-flag 1)
 
 ;; Set ispell backend
-(setq personal/user-ispell '("hunspell" "en_US"))
+(setq personal/user-ispell '("aspell" "en_US"))
 
 ;; set default erc nick
 (setq erc-nick "novakboskov")
+
+;; Temporary hacks
+(setq projectile-project-compilation-cmd "")
