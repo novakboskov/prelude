@@ -13,5 +13,8 @@
 ;; set default erc nick
 (setq erc-nick "novakboskov")
 
+;; set human readable dired
+(setq dired-listing-switches "-alh")
+
 ;; Temporary hacks
 (setq projectile-project-compilation-cmd "")
