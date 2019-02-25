@@ -58,7 +58,8 @@
 (global-set-key (kbd "C-x M") (lambda () (interactive) (eshell t)))
 
 ;; Start a regular shell if you prefer that.
-(global-set-key (kbd "C-x M-m") 'shell)
+;; prelude-more changes this to ansi-term
+(global-set-key (kbd "C-x M-m") 'ansi-term)
 
 ;; If you want to be able to M-x without meta
 (global-set-key (kbd "C-x C-m") 'smex)
