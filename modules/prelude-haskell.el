@@ -39,42 +39,38 @@
                             hlint-refactor
                             hamlet-mode))
 
-(eval-after-load 'haskell-mode
-  '(progn
-     (defun prelude-haskell-mode-defaults ()
-       (subword-mode +1)
-       (eldoc-mode +1)
-       (haskell-indentation-mode +1)
-       ;; prelude-more
-       (intero-global-mode 1)
-       ;; (interactive-haskell-mode +1)
-       (setq haskell-stylish-on-save t)
-       (setq haskell-hoogle-command nil))
+(with-eval-after-load 'haskell-mode
+  (defun prelude-haskell-mode-defaults ()
+    (subword-mode +1)
+    (eldoc-mode +1)
+    (haskell-indentation-mode +1)
+    (interactive-haskell-mode +1))
 
-     (setq prelude-haskell-mode-hook 'prelude-haskell-mode-defaults)
+  (setq prelude-haskell-mode-hook 'prelude-haskell-mode-defaults)
+  (add-hook 'haskell-mode-hook (lambda ()
+                                 (run-hooks 'prelude-haskell-mode-hook)
+                                 (setq-local helm-dash-docsets '("Haskell"))))
 
-     (add-hook 'haskell-mode-hook (lambda ()
-                                    (run-hooks 'prelude-haskell-mode-hook)
-                                    (setq-local helm-dash-docsets '("Haskell"))))
-     (add-hook 'haskell-mode-hook 'intero-mode)
-     (add-hook 'haskell-mode-hook 'hindent-mode)
-     (add-hook 'haskell-mode-hook 'hlint-refactor-mode)
+  (add-hook 'haskell-mode-hook 'intero-mode)
+  (add-hook 'haskell-mode-hook 'hindent-mode)
+  (add-hook 'haskell-mode-hook 'hlint-refactor-mode)
 
-     (define-key haskell-mode-map (kbd "C-c C-d") 'haskell-hoogle)
-     (define-key haskell-mode-map (kbd "C-u C-c C-d") 'haskell-hoogle-lookup-from-local)
-     (define-key haskell-mode-map (kbd "C-u C-u C-c C-d") 'helm-dash-at-point)
-     (define-key haskell-mode-map (kbd "C-c C-; r") 'intero-apply-suggestions)
-     (define-key haskell-mode-map (kbd "C-c C-; t") 'intero-type-at)
-     (define-key haskell-mode-map (kbd "C-c C-; a i") 'haskell-add-import)
-     (define-key haskell-mode-map (kbd "C-c C-; n i") 'haskell-navigate-imports-go)
-     (define-key haskell-mode-map (kbd "C-u C-c C-; n i") 'haskell-navigate-imports-return)
+  (define-key haskell-mode-map (kbd "C-c C-d") 'haskell-hoogle)
+  (define-key haskell-mode-map (kbd "C-u C-c C-d") 'haskell-hoogle-lookup-from-local)
+  (define-key haskell-mode-map (kbd "C-u C-u C-c C-d") 'helm-dash-at-point)
+  (define-key haskell-mode-map (kbd "C-c C-; r") 'intero-apply-suggestions)
+  (define-key haskell-mode-map (kbd "C-c C-; t") 'intero-type-at)
+  (define-key haskell-mode-map (kbd "C-c C-; a i") 'haskell-add-import)
+  (define-key haskell-mode-map (kbd "C-c C-; n i") 'haskell-navigate-imports-go)
+  (define-key haskell-mode-map (kbd "C-u C-c C-; n i") 'haskell-navigate-imports-return)
 
-     ;; This is prelude-more temporal solution until I grasp how
-     ;; `intero-mode-map' should work.
-     (defun intero-type-at-insert ()
-       (interactive)
-       (intero-type-at t))
-     (define-key haskell-mode-map (kbd "C-u C-c C-; t") 'intero-type-at-insert)))
+  (define-key haskell-mode-map (kbd "C-u C-c C-; t") 'intero-type-at-insert)
+
+  ;; This is prelude-more temporal solution until I grasp how
+  ;; `intero-mode-map' should work.
+  (defun intero-type-at-insert ()
+    (interactive)
+    (intero-type-at t)))
 
 (provide 'prelude-haskell)
 

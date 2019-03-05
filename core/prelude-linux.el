@@ -1,8 +1,8 @@
-;;; prelude-company.el --- company-mode setup
+;;; prelude-linux.el --- Emacs Prelude: linux specific settings.
 ;;
 ;; Copyright © 2011-2018 Bozhidar Batsov
 ;;
-;; Author: Bozhidar Batsov <bozhidar@batsov.com>
+;; Author: Stanislav Arnaudov <stanislav_ts@avb.bg>
 ;; URL: https://github.com/bbatsov/prelude
 ;; Version: 1.0.0
 ;; Keywords: convenience
@@ -11,7 +11,7 @@
 
 ;;; Commentary:
 
-;; company-mode config.
+;; Some Linux specific stuff.
 
 ;;; License:
 
@@ -31,20 +31,13 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-(prelude-require-packages '(company))
 
-(require 'company)
+;; On Linux Emacs doesn't use the shell PATH if it's not started from
+;; the shell. Let's fix that:
+(prelude-require-packages '(exec-path-from-shell))
 
-(setq company-idle-delay 0.5)
-(setq company-show-numbers t)
-(setq company-tooltip-limit 10)
-(setq company-minimum-prefix-length 2)
-(setq company-tooltip-align-annotations t)
-;; invert the navigation direction if the the completion popup-isearch-match
-;; is displayed on top (happens near the bottom of windows)
-(setq company-tooltip-flip-when-above t)
+(require 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
 
-(global-company-mode 1)
-
-(provide 'prelude-company)
-;;; prelude-company.el ends here
+(provide 'prelude-linux)
+;;; prelude-linux.el ends here

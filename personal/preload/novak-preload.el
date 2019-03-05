@@ -14,4 +14,8 @@
 (setq erc-nick "novakboskov")
 
 ;; temporary fix for projectile compile project
+;; set human readable dired
+(setq dired-listing-switches "-alh")
+
+;; Temporary hacks1
 (setq projectile-project-compilation-cmd "")

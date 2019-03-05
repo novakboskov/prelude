@@ -38,54 +38,29 @@
                             clj-refactor
                             kibit-helper))
 
-(eval-after-load 'clojure-mode
-  '(progn
-     (defun prelude-clojure-mode-defaults ()
-       (subword-mode +1)
-       (run-hooks 'prelude-lisp-coding-hook))
+(with-eval-after-load 'clojure-mode
+  (defun prelude-clojure-mode-defaults ()
+    (subword-mode +1)
+    (run-hooks 'prelude-lisp-coding-hook))
 
-     (defun kibit-clojure-prelude-more (arg)
-       (interactive "P")
-       (if arg
-           (kibit)
-         (kibit-current-file)))
+  (setq prelude-clojure-mode-hook 'prelude-clojure-mode-defaults)
 
-     (defun prelude-more-clojure-mode-defaults ()
-       (clj-refactor-mode 1)
-       (yas-minor-mode 1) ; for adding require/use/import
-       (cljr-add-keybindings-with-prefix "C-c C-;")
-       (setq clojure-align-forms-automatically t)
-       ;; kibit integration
-       (global-set-key (kbd "C-x C-`") 'kibit-accept-proposed-change)
-       (define-key clojure-mode-map (kbd "C-c C-; k") #'kibit-clojure-prelude-more))
+  (add-hook 'clojure-mode-hook (lambda ()
+                                 (run-hooks 'prelude-clojure-mode-hook))))
 
-     (setq prelude-clojure-mode-hook '(prelude-clojure-mode-defaults
-                                       prelude-more-clojure-mode-defaults))
+(with-eval-after-load 'cider
+  (setq nrepl-log-messages t)
 
-     (add-hook 'clojure-mode-hook (lambda ()
-                                    (run-hooks 'prelude-clojure-mode-hook)))))
+  (add-hook 'cider-mode-hook 'eldoc-mode)
 
-(eval-after-load 'cider
-  '(progn
-     (setq nrepl-log-messages t)
-     (setq cider-repl-display-help-banner nil)
+  (defun prelude-cider-repl-mode-defaults ()
+    (subword-mode +1)
+    (run-hooks 'prelude-interactive-lisp-coding-hook))
 
-     (add-hook 'cider-mode-hook 'eldoc-mode)
+  (setq prelude-cider-repl-mode-hook 'prelude-cider-repl-mode-defaults)
 
-     (defun prelude-cider-repl-mode-defaults ()
-       (subword-mode +1)
-       (run-hooks 'prelude-interactive-lisp-coding-hook))
-
-     (setq prelude-cider-repl-mode-hook 'prelude-cider-repl-mode-defaults)
-
-     (add-hook 'cider-repl-mode-hook (lambda ()
-                                       (run-hooks 'prelude-cider-repl-mode-hook)))
-
-     (defun set-cider-cljs-lein-repl-to-figwheel ()
-       (interactive)
-       (setq cider-cljs-lein-repl "(do (require 'figwheel-sidecar.repl-api)
-                                          (figwheel-sidecar.repl-api/start-figwheel!)
-                                          (figwheel-sidecar.repl-api/cljs-repl))"))))
+  (add-hook 'cider-repl-mode-hook (lambda ()
+                                    (run-hooks 'prelude-cider-repl-mode-hook))))
 
 (provide 'prelude-clojure)
 

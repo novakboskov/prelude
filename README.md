@@ -12,11 +12,12 @@ library to the mix. The final product offers an easy to use Emacs
 configuration for Emacs newcomers and lots of additional power for
 Emacs power users.
 
-Prelude is compatible **ONLY with GNU Emacs 24.4+**. In general you're
+Prelude is compatible **ONLY with GNU Emacs 25.1+**. In general you're
 advised to always run Prelude with the latest Emacs - currently
-**25.2**.
+**26.1**.
 
 You can support the development of Prelude via
+[PayPal](https://www.paypal.me/bbatsov),
 [Salt](https://bountysource.com/teams/prelude),
 [Patreon](https://www.patreon.com/bbatsov) and
 [Liberapay](https://liberapay.com/bbatsov/donate).
@@ -343,7 +344,6 @@ Keybinding         | Description
 <kbd>C-c . #</kbd> | Convert integer at point to specified base. Default is 10.
 <kbd>C-c . %</kbd> | Replace integer at point with another specified integer.
 <kbd>C-c . '</kbd> | Perform arithmetic operations on integer at point. User specifies the operator.
-<kbd>Super-g</kbd> | Toggle between God mode and non-God mode
 <kbd>Super-r</kbd> | Recent files
 <kbd>Super-j</kbd> | Join lines
 <kbd>Super-k</kbd> | Kill whole line
@@ -359,14 +359,14 @@ For subsequent operations, only the appropriate operations (i.e. `+`, `-`, `*`, 
 
 Prelude does not mess by default with the standard mapping of `Command` (to `Super`) and `Option` (to `Meta`).
 
-If you want to swap them add this to your personal config:
+If you want to swap them add this to your [personal config](#personalizing):
 
 ```lisp
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'super)
 ```
 
-You can also temporarily swap them with `C-c w` (`M-x prelude-swap-meta-and-super`).
+You can also temporarily swap them with `C-c w` (`M-x prelude-swap-meta-and-super`). Note that some emacs distributions (like [emacs-mac](https://bitbucket.org/mituharu/emacs-mac.git) come with `Command` [set](https://bitbucket.org/mituharu/emacs-mac/src/7fdbfba85d543f01b81e997e2b03788c35cb3bfa/src/macterm.c?at=master&fileviewer=file-view-default#macterm.c-6147:6169) to `Meta`.
 
 **Note**: I'd highly recommend to all macOS users to consider
 [remapping Return to
@@ -516,8 +516,8 @@ for the eyes, that's why I took that "controversial" decision to
 replace it. You can, of course, easily go back to the default (or
 select another theme entirely).
 
-To disable Zenburn just put in your personal config the following
-line:
+To disable Zenburn just put in your [personal config](#personalizing)
+the following line:
 
 ```lisp
 (disable-theme 'zenburn)
@@ -526,15 +526,16 @@ line:
 Or you can use another theme altogether by adding something in `personal/preload` like:
 
 ```lisp
-(prelude-require-package 'solarized-theme)
-(setq prelude-theme 'solarized-dark)
+(setq prelude-theme 'tango)
 ```
 
-**Note** [Solarized](https://github.com/bbatsov/zenburn-emacs) is not
-available by default - you'll have to install it from MELPA first,
-therefore the need for `prelude-require-package`.  Alternatively you
-can manually install the package like this - `M-x package-install RET
-solarized-theme`.
+**Note** To use a non-built-in theme, like [Solarized](https://github.com/bbatsov/solarized-emacs),
+you'll have to install it from MELPA first by `M-x package-install RET solarized-theme`. Then add
+
+``` lisp
+(setq prelude-theme 'solarized-dark)
+```
+in `personal/preload`.
 
 Finally, if you don't want any theme at all, you can add this to your
 `personal/preload`:
@@ -544,6 +545,31 @@ Finally, if you don't want any theme at all, you can add this to your
 ```
 
 ### Personalizing
+
+All files you create under the `personal/` directory are yours for
+personalization.  There is no single special personal config file --
+any files you create in the `personal/` directory will be loaded in
+lexicographical order.  The overall loading precedence is:
+
+1.  `personal/preload/*`
+2.  `core/`
+3.  `prelude-modules.el`
+4.  `personal/*`
+
+#### Personalization Example
+
+Suppose you want to configure go-mode to autoformat on each save.  You
+can create a file in `personal/`, let's call this one
+`config-go-mode.el` and add the following to it.
+
+``` emacs-lisp
+(add-hook 'go-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook 'gofmt-before-save)
+            (setq tab-width 2)))
+```
+
+#### Tips
 
 **Fork** (instead of cloning) the official Prelude repo and add your
 own touch to it. You're advised to **avoid changing stuff outside of
@@ -654,14 +680,14 @@ way to use Emacs is by using it the way it was intended to be used (as
 far as navigation is concerned at least).
 
 If you'd like to be take this a step further and disable the arrow key navigation
-completely put this in your personal config:
+completely put this in your [personal config](#personalizing):
 
 ```lisp
 (setq guru-warn-only nil)
 ```
 
 To disable `guru-mode` completely add the following snippet to your
-personal Emacs config:
+[personal config](#personalizing):
 
 ```lisp
 (setq prelude-guru nil)
@@ -671,7 +697,7 @@ personal Emacs config:
 
 Prelude overrides `C-a` to behave as described
 [here](http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/). If
-you don't like that simply add this to your personal config:
+you don't like that simply add this to your [personal config](#personalizing):
 
 ```lisp
 (global-set-key [remap move-beginning-of-line]
