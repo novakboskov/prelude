@@ -1,9 +1,9 @@
-;;; prelude-more-proofgeneral.el --- Prelude more integration with Proof General  -*- lexical-binding: t; -*-
+;;; prelude-more-verilog.el --- Verilators verilog-mode  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2017  Novak Boškov
+;; Copyright (C) 2019  Novak Boškov
 
 ;; Author: Novak Boškov <gnovak.boskov@gmail.com>
-;; Keywords:
+;; Keywords: verilog
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -16,15 +16,20 @@
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
-;; Prelude more integration with Proof General
+;; This is how I load the latest Verilator's verilog-mode
 
 ;;; Code:
 
-(prelude-require-package 'proof-general)
+(autoload 'verilog-mode "verilog-mode" "Verilog mode" t )
+(add-to-list 'auto-mode-alist '("\\.[ds]?vh?\\'" . verilog-mode))
 
-(provide 'prelude-more-proofgeneral)
-;;; prelude-more-proofgeneral.el ends here
+;; This workaround is necessary as a dirty fix
+;; https://github.com/flycheck/flycheck/issues/740
+(setq flycheck-verilog-verilator-executable "invoke-verilator.sh")
+
+(provide 'prelude-more-verilog)
+;;; prelude-more-verilog.el ends here
