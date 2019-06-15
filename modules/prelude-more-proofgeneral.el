@@ -24,7 +24,7 @@
 
 ;;; Code:
 
-(prelude-require-package 'proof-general)
+;; (prelude-require-package 'proof-general)
 
 (provide 'prelude-more-proofgeneral)
 ;;; prelude-more-proofgeneral.el ends here
