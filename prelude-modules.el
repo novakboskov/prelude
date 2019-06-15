@@ -44,7 +44,7 @@
 (require 'prelude-more-diary)
 (require 'prelude-more-org-pages)
 (require 'prelude-more-plantuml)
-(require 'prelude-more-docker)
+;; (require 'prelude-more-docker)
 (require 'prelude-more-wttrin)
 (require 'prelude-more-sparql)
 (require 'prelude-more-w3m)
