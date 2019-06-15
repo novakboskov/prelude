@@ -1,6 +1,6 @@
-;;; prelude-more-proofgeneral.el --- Prelude more integration with Proof General  -*- lexical-binding: t; -*-
+;;; prelude-more-alloy.el --- Alloy model finder     -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2017  Novak Boškov
+;; Copyright (C) 2019  Novak Boškov
 
 ;; Author: Novak Boškov <gnovak.boskov@gmail.com>
 ;; Keywords:
@@ -16,15 +16,15 @@
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
-;; Prelude more integration with Proof General
+;; Alloy model finder settings
 
 ;;; Code:
 
-(prelude-require-package 'proof-general)
+(require 'alloy-mode)
 
-(provide 'prelude-more-proofgeneral)
-;;; prelude-more-proofgeneral.el ends here
+(provide 'prelude-more-alloy)
+;;; prelude-more-alloy.el ends here

@@ -57,4 +57,6 @@
 (require 'prelude-more-llvm)
 ;; (require 'prelude-more-proofgeneral)
 (require 'prelude-more-org-gcal)
+(require 'prelude-more-alloy)
+(require 'prelude-more-verilog)
 (require 'prelude-more-pdf-tools)

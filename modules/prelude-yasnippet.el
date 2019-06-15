@@ -1,6 +1,6 @@
-;;; prelude-more-proofgeneral.el --- Prelude more integration with Proof General  -*- lexical-binding: t; -*-
+;;; prelude-yasnippet.el --- Yasnippet module        -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2017  Novak Boškov
+;; Copyright (C) 2019  Novak Boškov
 
 ;; Author: Novak Boškov <gnovak.boskov@gmail.com>
 ;; Keywords:
@@ -16,15 +16,18 @@
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
-;; Prelude more integration with Proof General
+;; Yasnippet module
 
 ;;; Code:
 
-(prelude-require-package 'proof-general)
+(prelude-require-packages '(yasnippet
+                            yasnippet-snippets))
 
-(provide 'prelude-more-proofgeneral)
-;;; prelude-more-proofgeneral.el ends here
+(yas-global-mode 1)
+
+(provide 'prelude-yasnippet)
+;;; prelude-yasnippet.el ends here
