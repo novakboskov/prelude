@@ -36,7 +36,8 @@
 (prelude-require-packages '(anaconda-mode
                             virtualenvwrapper
                             pyimport
-                            flycheck-mypy))
+                            flycheck-mypy
+                            ein))
 
 (when (boundp 'company-backends)
   (prelude-require-package 'company-anaconda)

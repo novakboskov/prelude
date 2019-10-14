@@ -55,7 +55,7 @@
 (require 'prelude-more-hackernews)
 (require 'prelude-more-languagetool)
 (require 'prelude-more-llvm)
-(require 'prelude-more-proofgeneral)
+;; (require 'prelude-more-proofgeneral)
 (require 'prelude-more-org-gcal)
 (require 'prelude-more-alloy)
 (require 'prelude-more-verilog)
