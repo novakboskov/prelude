@@ -29,5 +29,5 @@
 
 (yas-global-mode 1)
 
-(provide 'prelude-yasnippet)
+(provide 'prelude-more-yasnippet)
 ;;; prelude-yasnippet.el ends here

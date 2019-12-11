@@ -27,9 +27,9 @@
 (put 'projectile-test-suffix-function 'safe-local-variable (lambda (_) t))
 
 ;; Load lighter theme
-(disable-theme 'zenburn)
-(prelude-require-package 'spacemacs-theme)
-(load-theme 'spacemacs-light)
+;; (disable-theme 'zenburn)
+;; (prelude-require-package 'spacemacs-theme)
+;; (load-theme 'spacemacs-light)
 
 (provide 'novak-personal-customization)
 ;;; novak-personal-customization.el ends here

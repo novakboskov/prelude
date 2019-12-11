@@ -68,7 +68,14 @@
 
           (setq indent-tabs-mode t)
           (setq show-trailing-whitespace t)
-          (c-set-style "linux-tabs-only"))
+          (c-set-style "linux-tabs-only")
+
+          ;; Don't highlight tab in through whitespace-mode
+          (when (boundp 'whitespace-style)
+            (setq-local whitespace-style
+                        (cl-set-difference whitespace-style '(tabs))))
+          (whitespace-mode -1)
+          (whitespace-mode 1))
       (progn
         ;; Use some of the regular indentations
         (setq c-default-style "kernel"
