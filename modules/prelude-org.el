@@ -38,7 +38,7 @@
 (require 'ob-python)
 (require 'ox-latex)
 ;; prelude-more support easy templates in org mode
-(require 'org-tempo)
+;; (require 'org-tempo)
 
 (defun org-export-translate-to-lang (term-translations &optional lang)
   "Adds desired translations to `org-export-dictionary'.
