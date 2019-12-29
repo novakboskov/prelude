@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: C file header
+# key: C
+# --
+/* Description
+*
+* Author: Novak Boškov <boskov@bu.edu>
+*
+* Created on `(format-time-string "%b, %Y.")`
+*
+* Usage:
+*
+* Licence
+*/
