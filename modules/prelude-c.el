@@ -78,7 +78,7 @@
           (whitespace-mode 1))
       (progn
         ;; Use some of the regular indentations
-        (setq c-default-style "kernel"
+        (setq c-default-style "gnu"
               c-basic-offset 4)
         (c-set-offset 'substatement-open 0)))))
 

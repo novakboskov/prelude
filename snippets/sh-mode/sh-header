@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: sh-header
+# key: sh-header
+# --
+#!/bin/bash
+#
+# Description
+#
+# Usage:
+#
+# Author: Novak Boškov <boskov@bu.edu>
+# Date: `(format-time-string "%b, %Y.")`
+#
+# Licence

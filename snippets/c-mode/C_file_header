@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: C file header
-# key: C
+# name: C-header
+# key: C-header
 # --
 /* Description
 *

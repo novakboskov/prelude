@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: python-header
+# key: python-header
+# --
+"""
+Description
+
+Usage:
+
+Author: Novak Boškov <boskov@bu.edu>
+Date: `(format-time-string "%b, %Y.")`
+
+Licence
+"""
