@@ -82,7 +82,7 @@
 
 ;; Use golint
 (exec-path-from-shell-copy-env "GOPATH")
-(add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
+(add-to-list 'load-path (concat (getenv "GOPATH")  "/src/golang.org/x/lint/misc/emacs"))
 (require 'golint)
 
 (provide 'prelude-go)
