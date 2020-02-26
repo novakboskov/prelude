@@ -118,6 +118,11 @@
 ;; prelude-more visit url in browser
 (global-set-key (kbd "s-b") 'browse-url-at-point)
 
+;; prelude-more pixel-scrol-mode
+(pixel-scroll-mode)
+(global-set-key (kbd "M-p") 'pixel-scroll-down)
+(global-set-key (kbd "M-[") 'pixel-scroll-up)
+
 (provide 'prelude-global-keybindings)
 
 ;;; prelude-global-keybindings.el ends here
