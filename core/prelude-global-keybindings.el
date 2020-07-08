@@ -120,8 +120,8 @@
 
 ;; prelude-more pixel-scrol-mode
 (pixel-scroll-mode)
-(global-set-key (kbd "M-]") 'pixel-scroll-down)
-(global-set-key (kbd "M-[") 'pixel-scroll-up)
+(global-set-key (kbd "M-]") 'pixel-scroll-up)
+(global-set-key (kbd "M-[") 'pixel-scroll-down)
 
 (provide 'prelude-global-keybindings)
 

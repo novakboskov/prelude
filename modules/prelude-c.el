@@ -80,7 +80,8 @@
         ;; Use some of the regular indentations
         (setq c-default-style "gnu"
               c-basic-offset 4)
-        (c-set-offset 'substatement-open 0)))))
+        (c-set-offset 'substatement-open 0))
+      (setq which-function-mode t))))
 
 (defun prelude-more-cmake-ide ()
   ;; hot fix, rtags should be already loaded here
