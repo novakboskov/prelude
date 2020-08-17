@@ -105,14 +105,21 @@
     (require 'flycheck-clang-analyzer)
     (flycheck-clang-analyzer-setup)))
 
+(defun prelude-more-rtags ()
+  (setq rtags-autostart-diagnostics t)
+  (setq rtags-tramp-enabled t)
+  (setq rtags-rc-log-enabled t))
+
 (setq prelude-c-mode-common-hook 'prelude-c-mode-common-defaults)
 (setq prelude-more-cmake-ide-hook 'prelude-more-cmake-ide)
+(setq prelude-more-rtags-hook 'prelude-more-rtags)
 
 ;; this will affect all modes derived from cc-mode, like
 ;; java-mode, php-mode, etc
 (add-hook 'c-mode-common-hook (lambda ()
                                 (run-hooks 'prelude-c-mode-common-hook)
-                                (run-hooks 'prelude-more-cmake-ide-hook)))
+                                (run-hooks 'prelude-more-cmake-ide-hook)
+                                (run-hooks 'prelude-more-rtags-hook)))
 
 (defun prelude-makefile-mode-defaults ()
   (whitespace-toggle-options '(tabs))
