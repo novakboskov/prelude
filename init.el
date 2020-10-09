@@ -3,8 +3,8 @@
 ;; Copyright (c) 2011-2020 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
-;; URL: http://batsov.com/prelude
-;; Version: 1.0.0
+;; URL: https://github.com/bbatsov/prelude
+;; Version: 1.1.0-snapshot
 ;; Keywords: convenience
 
 ;; This file is not part of GNU Emacs.
@@ -37,13 +37,14 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+                                        ;(package-initialize)
 
-(defvar current-user
+
+(defvar prelude-user
   (getenv
    (if (equal system-type 'windows-nt) "USERNAME" "USER")))
 
-(message "Prelude is powering up... Be patient, Master %s!" current-user)
+(message "Prelude is powering up... Be patient, Master %s!" prelude-user)
 
 (when (version< emacs-version "25.1")
   (error "Prelude requires GNU Emacs 25.1 or newer, but you're running %s" emacs-version))
@@ -51,6 +52,7 @@
 ;; Always load newest byte code
 (setq load-prefer-newer t)
 
+;; Define Prelude's directory structure
 (defvar prelude-dir (file-name-directory load-file-name)
   "The root dir of the Emacs Prelude distribution.")
 (defvar prelude-core-dir (expand-file-name "core" prelude-dir)
@@ -67,27 +69,22 @@ by Prelude.")
   "This directory is for your personal configuration, that you want loaded before Prelude.")
 (defvar prelude-vendor-dir (expand-file-name "vendor" prelude-dir)
   "This directory houses packages that are not yet available in ELPA (or MELPA).")
-(defvar prelude-savefile-dir (expand-file-name "savefile" prelude-dir)
+(defvar prelude-savefile-dir (expand-file-name "savefile" user-emacs-directory)
   "This folder stores all the automatically generated save/history-files.")
 (defvar prelude-modules-file (expand-file-name "prelude-modules.el" prelude-personal-dir)
   "This file contains a list of modules that will be loaded by Prelude.")
-(defvar prelude-deprecated-modules-file
-  (expand-file-name "prelude-modules.el" prelude-dir)
-  (format "This file may contain a list of Prelude modules.
-
-This is DEPRECATED, use %s instead." prelude-modules-file))
 
 (unless (file-exists-p prelude-savefile-dir)
   (make-directory prelude-savefile-dir))
 
 (defun prelude-add-subfolders-to-load-path (parent-dir)
- "Add all level PARENT-DIR subdirs to the `load-path'."
- (dolist (f (directory-files parent-dir))
-   (let ((name (expand-file-name f parent-dir)))
-     (when (and (file-directory-p name)
-                (not (string-prefix-p "." f)))
-       (add-to-list 'load-path name)
-       (prelude-add-subfolders-to-load-path name)))))
+  "Add all level PARENT-DIR subdirs to the `load-path'."
+  (dolist (f (directory-files parent-dir))
+    (let ((name (expand-file-name f parent-dir)))
+      (when (and (file-directory-p name)
+                 (not (string-prefix-p "." f)))
+        (add-to-list 'load-path name)
+        (prelude-add-subfolders-to-load-path name)))))
 
 ;; add Prelude's directories to Emacs's `load-path'
 (add-to-list 'load-path prelude-core-dir)
@@ -114,7 +111,7 @@ This is DEPRECATED, use %s instead." prelude-modules-file))
 
 (message "Loading Prelude's core...")
 
-;; the core stuff
+;; load the core stuff
 (require 'prelude-packages)
 (require 'prelude-custom)  ;; Needs to be loaded before core, editor and ui
 (require 'prelude-ui)
@@ -139,22 +136,21 @@ This is DEPRECATED, use %s instead." prelude-modules-file))
 (when (eq system-type 'gnu/linux)
   (require 'prelude-linux))
 
+;; WSL specific setting
+(when (and (eq system-type 'gnu/linux) (getenv "WSLENV"))
+  (require 'prelude-wsl))
+
+;; Windows specific settings
+(when (eq system-type 'windows-nt)
+  (require 'prelude-windows))
+
 (message "Loading Prelude's modules...")
 
 ;; the modules
 (if (file-exists-p prelude-modules-file)
-    (progn
-      (load prelude-modules-file)
-      (if (file-exists-p prelude-deprecated-modules-file)
-          (message "Loading new modules configuration, ignoring DEPRECATED prelude-module.el")))
-  (if (file-exists-p prelude-deprecated-modules-file)
-      (progn
-        (load prelude-deprecated-modules-file)
-        (message (format "The use of %s is DEPRECATED! Use %s instead!"
-                         prelude-deprecated-modules-file
-                         prelude-modules-file)))
-    (message "Missing modules file %s" prelude-modules-file)
-    (message "You can get started by copying the bundled example file from sample/prelude-modules.el")))
+    (load prelude-modules-file)
+  (message "Missing modules file %s" prelude-modules-file)
+  (message "You can get started by copying the bundled example file from sample/prelude-modules.el"))
 
 ;; config changes made through the customize UI will be stored here
 (setq custom-file (expand-file-name "custom.el" prelude-personal-dir))
@@ -166,7 +162,7 @@ This is DEPRECATED, use %s instead." prelude-modules-file))
                prelude-modules-file
                (directory-files prelude-personal-dir 't "^[^#\.].*\\.el$"))))
 
-(message "Prelude is ready to do thy bidding, Master %s!" current-user)
+(message "Prelude is ready to do thy bidding, Master %s!" prelude-user)
 
 ;; Patch security vulnerability in Emacs versions older than 25.3
 (when (version< emacs-version "25.3")

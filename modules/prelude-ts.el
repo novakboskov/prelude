@@ -3,8 +3,6 @@
 ;; Copyright © 2011-2020 LEE Dongjun
 ;;
 ;; Author: LEE Dongjun <redongjun@gmail.com>
-;; Version: 1.0.0
-;; Keywords: convenience typescript
 
 ;; This file is not part of GNU Emacs.
 
@@ -48,7 +46,10 @@
     (tide-hl-identifier-mode +1))
 
   ;; formats the buffer before saving
-  (add-hook 'before-save-hook 'tide-format-before-save)
+  (add-hook 'before-save-hook
+            (lambda ()
+              (when prelude-format-on-save
+                (tide-format-before-save))))
 
   (setq prelude-ts-mode-hook 'prelude-ts-mode-defaults)
 

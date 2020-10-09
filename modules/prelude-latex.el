@@ -4,8 +4,6 @@
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/prelude
-;; Version: 1.0.0
-;; Keywords: convenience
 
 ;; This file is not part of GNU Emacs.
 
@@ -37,7 +35,7 @@
                             helm-bibtex))
 (require 'smartparens-latex)
 ;; for case
-(require 'cl)
+(require 'cl-lib)
 ;; prelude-more
 (require 'helm-bibtex)
 
@@ -84,7 +82,7 @@
   (turn-on-auto-fill)
   (abbrev-mode +1)
   (smartparens-mode +1)
-  (case prelude-latex-fast-math-entry
+  (cl-case prelude-latex-fast-math-entry
     (LaTeX-math-mode (LaTeX-math-mode 1))
     (cdlatex (turn-on-cdlatex)))
 

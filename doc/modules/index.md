@@ -47,29 +47,48 @@ Here's a real example.
 
 To use a module you simple have to require it. No new concepts. No magic.
 
-## List of Modules
+## Programming Language Modules
+
+The following programming languages have enhanced support in Prelude:
 
 - C/C++
-- Clojure
+- [Clojure](clojure.md)
 - CoffeeScript
-- Common Lisp
+- [Common Lisp](common_lisp.md)
 - CSS
-- Emacs-Lisp
-- [ERC](erc.md)
+- [Dart](dart.md)
+- [Emacs Lisp](emacs_lisp.md)
 - Erlang
 - Elixir
 - Go
 - Haskell
 - JavaScript
 - LaTeX
-- Lisp Base
+- [Lisp Base](lisp.md) (common foundation for Lisp modules)
+- LSP (common foundation for all modules relying on `lsp-mode`)
 - Markdown
-- Org Mode
+- OCaml
 - Perl
 - [Python](python.md)
-- Ruby
+- [Programming Base](programming.md) (common foundation for programming modules)
+- [Ruby](ruby.md)
 - Rust
 - Scala
-- Scheme
+- [Scheme](scheme.md)
 - SCSS
+- Shell
+- TypeScript
 - Web
+- XML
+- YAML
+
+## Other Modules
+
+- [Company](company.md)
+- [ERC](erc.md)
+- evil
+- helm
+- ido
+- ivy
+- key-chord
+- Org Mode
