@@ -20,3 +20,7 @@
 
 ;; Temporary hacks1
 (setq projectile-project-compilation-cmd "")
+
+(setq prelude-minimalistic-ui t)
+
+(setq menu-bar-mode -1)
