@@ -31,12 +31,9 @@
 ;;; Code:
 
 (require 'prelude-programming)
-;; prelude-more cmake-ide configuration
-(prelude-require-packages '(rtags
-                            irony
-                            cmake-ide
-                            cmake-mode
-                            flycheck-clang-analyzer))
+
+(prelude-require-packages '(cmake-mode
+                            ccls))
 
 ;; Set the path to the Linux kernel
 (setq prelude-more-kernel-path "~/Desktop/CODE/linux")
@@ -81,43 +78,20 @@
         (c-set-offset 'substatement-open 0))
       (setq which-function-mode t))))
 
-(defun prelude-more-cmake-ide ()
-  ;; hot fix, rtags should be already loaded here
-  (require 'rtags)
-  (rtags-enable-standard-keybindings c-mode-base-map "C-c C-;")
-  (cmake-ide-setup)
-  (add-hook 'c++-mode-hook 'irony-mode)
-  (add-hook 'c-mode-hook 'irony-mode)
-  (add-hook 'objc-mode-hook 'irony-mode)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-
-  (define-key c-mode-map (kbd "C-c C-k") 'cmake-ide-compile)
-  (define-key c++-mode-map (kbd "C-c C-k") 'cmake-ide-compile)
-  (define-key c-mode-map (kbd "M-?")
-    (lambda () (interactive) (manual-entry (current-word))))
-  (define-key c++-mode-map (kbd "M-?")
-    (lambda () (interactive) (manual-entry (current-word))))
-
-  ;; flycheck-clang-analyzer setup
-  (with-eval-after-load 'flycheck
-    (require 'flycheck-clang-analyzer)
-    (flycheck-clang-analyzer-setup)))
-
-(defun prelude-more-rtags ()
-  (setq rtags-autostart-diagnostics t)
-  (setq rtags-tramp-enabled t)
-  (setq rtags-rc-log-enabled t))
+(defun prelude-more-ccls ()
+  (setq lsp-prefer-flymake nil)
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+  (yas-minor-mode)                      ;; needed for autocompletion to work
+  (lsp))
 
 (setq prelude-c-mode-common-hook 'prelude-c-mode-common-defaults)
-(setq prelude-more-cmake-ide-hook 'prelude-more-cmake-ide)
-(setq prelude-more-rtags-hook 'prelude-more-rtags)
+(setq prelude-c-mode-prelude-more-ccls 'prelude-more-ccls)
 
 ;; this will affect all modes derived from cc-mode, like
 ;; java-mode, php-mode, etc
 (add-hook 'c-mode-common-hook (lambda ()
                                 (run-hooks 'prelude-c-mode-common-hook)
-                                (run-hooks 'prelude-more-cmake-ide-hook)
-                                (run-hooks 'prelude-more-rtags-hook)))
+                                (run-hooks 'prelude-c-mode-prelude-more-ccls)))
 
 (defun prelude-makefile-mode-defaults ()
   (whitespace-toggle-options '(tabs))
