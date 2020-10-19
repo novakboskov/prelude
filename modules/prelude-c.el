@@ -65,22 +65,17 @@
           (setq show-trailing-whitespace t)
           (c-set-style "linux-tabs-only")
 
-          ;; Don't highlight tab in through whitespace-mode
+          ;; Don't highlight tab through whitespace-mode
           (when (boundp 'whitespace-style)
             (setq-local whitespace-style
                         (cl-set-difference whitespace-style '(tabs))))
           (whitespace-mode -1)
           (whitespace-mode 1))
-      (progn
-        ;; Use some of the regular indentations
-        (setq c-default-style "gnu"
-              c-basic-offset 4)
-        (c-set-offset 'substatement-open 0))
       (setq which-function-mode t))))
 
 (defun prelude-more-ccls ()
   (setq lsp-prefer-flymake nil)
-  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-gcc))
   (yas-minor-mode)                      ;; needed for autocompletion to work
   (lsp))
 
