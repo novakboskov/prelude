@@ -38,3 +38,7 @@ prelude-cheatsheet.el
 prelude-cheatsheet.aux
 prelude-cheatsheet.log
 transient/
+./cache
+/workspace/
+/eclipse.jdt.ls/
+/.cache/
