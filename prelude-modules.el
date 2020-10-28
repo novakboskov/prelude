@@ -60,4 +60,3 @@
 ;; (require 'prelude-more-alloy)
 (require 'prelude-more-verilog)
 ;; (require 'prelude-more-tla-plus)
-(require 'prelude-more-yasnippet)

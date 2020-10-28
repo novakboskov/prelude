@@ -42,3 +42,4 @@
 (require 'prelude-yaml)
 (require 'prelude-more-pdf-tools)
 (require 'prelude-more-java)
+(require 'prelude-more-yasnippet)

@@ -27,6 +27,14 @@
 (prelude-require-packages '(yasnippet
                             yasnippet-snippets))
 
+(defun prelude-more-yas-mode-defaults ()
+  (define-key yas-minor-mode-map (kbd "<C-tab>") 'yas-expand))
+
+(setq prelude-more-yas-mode-hook 'prelude-more-yas-mode-defaults)
+
+(add-hook 'yas-minor-mode-hook (lambda ()
+                                 (run-hooks 'prelude-more-yas-mode-hook)))
+
 (yas-global-mode 1)
 
 (provide 'prelude-more-yasnippet)
