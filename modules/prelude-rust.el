@@ -61,6 +61,10 @@
       (local-set-key (kbd "C-c .") 'racer-find-definition)
       (local-set-key (kbd "C-c ,") 'pop-tag-mark))
 
+    ;; TODO: temporarily disable this checker as it tends to fail due
+    ;; to the versions discrepancy.
+    (setq-default flycheck-disabled-checkers '(rust-cargo))
+
     ;; Prevent #! from chmodding rust files to be executable
     (remove-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
     ;; CamelCase aware editing operations
