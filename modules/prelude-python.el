@@ -37,16 +37,9 @@
 (require 'prelude-programming)
 
 ;; Code navigation, documentation lookup and completion for Python
-(prelude-require-packages '(anaconda-mode
-                            virtualenvwrapper
-                            pyimport
-                            flycheck-mypy
-                            ein
-                            flycheck-mypy))
-
-(when (boundp 'company-backends)
-  (prelude-require-package 'company-anaconda)
-  (add-to-list 'company-backends 'company-anaconda))
+(prelude-require-packages '(virtualenvwrapper
+                            lsp-mode
+                            lsp-ui))
 
 (defcustom prelude-python-mode-set-encoding-automatically nil
   "Non-nil values enable auto insertion of '# coding: utf-8' on python buffers."
@@ -104,8 +97,6 @@
 (defun prelude-python-mode-defaults ()
   "Defaults for Python programming."
   (subword-mode +1)
-  (anaconda-mode +1)
-  (eldoc-mode +1)
   (setq-local electric-layout-rules
               '((?: . (lambda ()
                         (and (zerop (first (syntax-ppss)))
@@ -125,8 +116,8 @@
   (venv-initialize-interactive-shells) ;; if you want interactive shell support
   (venv-initialize-eshell) ;; if you want eshell support
 
-  (define-key python-mode-map (kbd "C-c C-; i") #'pyimport-insert-missing)
-  (define-key python-mode-map (kbd "C-c C-; u") #'pyimport-remove-unused))
+  ;; LSP mode setup
+  (lsp))
 
 (setq prelude-python-mode-hook 'prelude-python-mode-defaults)
 

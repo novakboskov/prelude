@@ -61,6 +61,8 @@
       (local-set-key (kbd "C-c .") 'racer-find-definition)
       (local-set-key (kbd "C-c ,") 'pop-tag-mark))
 
+    (setq lsp-rust-server 'rust-analyzer)
+
     ;; TODO: temporarily disable this checker as it tends to fail due
     ;; to the versions discrepancy.
     (setq-default flycheck-disabled-checkers '(rust-cargo))
