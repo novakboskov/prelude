@@ -2,6 +2,7 @@
 # name: python-header
 # key: python-header
 # --
+# -*- coding: utf-8 -*-
 """
 Description
 
