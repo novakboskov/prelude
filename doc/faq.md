@@ -14,7 +14,10 @@ that expands to some "traditional" configuration code. One aspect of `use-packag
 
 Given how modular the structure of Prelude is, there's relatively little to be gained by adopting `use-package` everywhere, but end users are free to use `use-package` for their personal configuration.
 
-I have a stripped down version of Prelude, based on `use-package` [here](https://github.com/bbatsov/emacs.d). I guess it might be of interest to some of you.
+!!! Note
+
+    I have a stripped-down version of Prelude for personal use, based on `use-package` [here](https://github.com/bbatsov/emacs.d).
+    I guess it might be of interest to some of you.
 
 ## Why does Prelude use MELPA instead of MELPA Stable by default?
 
@@ -24,5 +27,5 @@ in recent years, so Prelude's defaults might change down the road.
 
 ## Why is Zenburn the default color theme?
 
-No particular reason other than the fact that I like it lot and happen to maintain
-it's Emacs port. I believe it's pretty nice improvement over the default Emacs theme, but your perspective might be different.
+No particular reason other than the fact that I like it a lot and happen to maintain
+its Emacs port. I believe it's pretty nice improvement over the default Emacs theme, but your perspective might be different.

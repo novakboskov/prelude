@@ -1,15 +1,16 @@
-;;; prelude-scss.el --- Emacs Prelude: scss support
+;;; prelude-selectrum.el --- Selectrum setup
 ;;
 ;; Copyright © 2011-2021 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
-;; URL: http://www.batsov.com/emacs-prelude
+;; URL: https://github.com/bbatsov/prelude
 
 ;; This file is not part of GNU Emacs.
 
 ;;; Commentary:
 
-;; Some basic configuration for scss-mode.
+;; Selectrum-related config.  Selectrum is a smart framework for minibuffer
+;; completion/filtering/selection (think of ivy/ido).
 
 ;;; License:
 
@@ -29,19 +30,25 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
+(prelude-require-packages '(selectrum selectrum-prescient))
 
-(require 'prelude-css)
-(prelude-require-packages '(scss-mode))
+;;; Selectrum
+;;
+;; selectrum is a powerful alternative to the popular ido-mode and ivy-mode.
 
-;; turn off annoying auto-compile on save
-(setq scss-compile-at-save nil)
+(require 'selectrum)
+(require 'selectrum-prescient)
+(require 'diminish)
 
-(defun prelude-scss-mode-defaults ()
-  (prelude-css-mode-defaults))
+(selectrum-mode 1)
+(diminish 'selectrum-mode)
 
-(setq prelude-scss-mode-hook 'prelude-scss-mode-defaults)
+;; to make sorting and filtering more intelligent
+(selectrum-prescient-mode +1)
 
-(add-hook 'scss-mode-hook (lambda () (run-hooks 'prelude-scss-mode-hook)))
+;; to save your command history on disk, so the sorting gets more
+;; intelligent over time
+(prescient-persist-mode +1)
 
-(provide 'prelude-scss)
-;;; prelude-scss.el ends here
+(provide 'prelude-selectrum)
+;;; prelude-selectrum.el ends here

@@ -1,6 +1,6 @@
 ;;; prelude-org.el --- Emacs Prelude: org-mode configuration.
 ;;
-;; Copyright © 2011-2020 Bozhidar Batsov
+;; Copyright © 2011-2021 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -58,10 +58,15 @@
                                          :html translation-html
                                          :utf-8 translation-utf-8))))))))
 
-(add-to-list 'auto-mode-alist '("\\.org\\’" . org-mode))
+(require 'org)
+
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+
+;; a few useful global keybindings for org-mode
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-switchb)
+
 (setq org-log-done t)
 
 ;; custom agenda views
@@ -77,7 +82,7 @@
     (set-keymap-parent newmap oldmap)
     (define-key newmap (kbd "C-c +") nil)
     (define-key newmap (kbd "C-c -") nil)
-    (define-key newmap (kbd "C-a") nil)
+    (define-key newmap (kbd "C-a") 'org-beginning-of-line)
     (make-local-variable 'minor-mode-overriding-map-alist)
     (push `(prelude-mode . ,newmap) minor-mode-overriding-map-alist))
 

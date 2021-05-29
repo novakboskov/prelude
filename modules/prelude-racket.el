@@ -1,15 +1,15 @@
-;;; prelude-scala.el --- Emacs Prelude: scala-mode configuration.
+;;; prelude-racket.el --- Emacs Prelude: Racket programming support.
 ;;
 ;; Copyright © 2011-2021 Bozhidar Batsov
 ;;
-;; Author: Bozhidar Batsov <bozhidar@batsov.com>
+;; Author: Xiongfei Shi <xiongfei.shi@icloud.com>
 ;; URL: https://github.com/bbatsov/prelude
 
 ;; This file is not part of GNU Emacs.
 
 ;;; Commentary:
 
-;; Some basic support for the Scala programming language
+;; Basic configuration for Racket programming.
 
 ;;; License:
 
@@ -30,17 +30,23 @@
 
 ;;; Code:
 
-(require 'prelude-programming)
-(prelude-require-packages '(scala-mode lsp-mode))
+(prelude-require-packages '(racket-mode))
 
-(defun prelude-scala-mode-defaults ()
-  (subword-mode +1)
-  (lsp))
+(require 'prelude-lisp)
 
-(setq prelude-scala-mode-hook 'prelude-scala-mode-defaults)
+(with-eval-after-load 'racket-mode
+  (define-key racket-mode-map (kbd "M-RET") 'racket-run)
+  (define-key racket-mode-map (kbd "M-.") 'racket-repl-visit-definition)
 
-(add-hook 'scala-mode-hook (lambda ()
-                             (run-hooks 'prelude-scala-mode-hook)))
-(provide 'prelude-scala)
+  ;; Enable the common Lisp coding hook
+  (add-hook 'racket-mode-hook (lambda () (run-hooks 'prelude-lisp-coding-hook)))
 
-;;; prelude-scala.el ends here
+  (add-hook 'racket-mode-hook #'racket-unicode-input-method-enable)
+  (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
+
+(add-to-list 'auto-mode-alist '("\\.rkt?\\'" . racket-mode))
+(add-to-list 'auto-mode-alist '("\\.rkt\\'" . racket-mode))
+
+(provide 'prelude-racket)
+
+;;; prelude-racket ends here

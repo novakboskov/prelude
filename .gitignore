@@ -42,3 +42,6 @@ transient/
 /workspace/
 /eclipse.jdt.ls/
 /.cache/
+var/
+.cache/
+.lsp-session*
