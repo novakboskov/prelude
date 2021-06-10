@@ -91,6 +91,9 @@
   (setq org-agenda-include-diary t)
   (setq org-html-validation-link nil)
 
+  ;; some org-mode local key bindings
+  (local-set-key (kbd "C-c h i") 'counsel-org-goto)
+
   ;; active Org-babel languages
   (org-babel-do-load-languages
    'org-babel-load-languages
