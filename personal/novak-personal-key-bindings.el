@@ -28,5 +28,7 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+(global-set-key (kbd "C-c g") 'prelude-google)
+
 (provide 'novak-key-bindings)
 ;;; novak-key-bindings.el ends here

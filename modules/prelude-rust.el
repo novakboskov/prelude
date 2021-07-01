@@ -1,6 +1,6 @@
 ;;; prelude-rust.el --- Emacs Prelude: Rust programming support.
 ;;
-;; Authors: Doug MacEachern, Manoel Vilela, Ben Alex
+;; Authors: Doug MacEachern, Manoel Vilela, Ben Alex, Novak Boškov
 
 ;; This file is not part of GNU Emacs.
 
@@ -29,53 +29,19 @@
 
 (require 'prelude-programming)
 
-;; You may need to install the following packages on your system:
-;; * rustc (Rust Compiler)
-;; * cargo (Rust Package Manager)
-;; * racer (Rust Completion Tool)
-;; * rustfmt (Rust Tool for formatting code)
-;; * rls (Rust Language Server, if the prelude-lsp feature is enabled)
-
 (prelude-require-packages '(rust-mode
-                            cargo
-                            flycheck-rust
-                            ron-mode))
+                            lsp-mode))
 
-(unless (featurep 'prelude-lsp)
-  (prelude-require-packages '(racer)))
+(defun prelude-rust ()
+  (setq rust-format-on-save t)
+  (setq lsp-rust-server 'rust-analyzer)
+  (yas-minor-mode)
+  (lsp))
 
-(setq rust-format-on-save t)
+(setq prelude-rust-hook 'prelude-rust)
 
-(with-eval-after-load 'rust-mode
-  (add-hook 'rust-mode-hook 'cargo-minor-mode)
-  (add-hook 'flycheck-mode-hook 'flycheck-rust-setup)
-
-  (if (featurep 'prelude-lsp)
-      (add-hook 'rust-mode-hook 'lsp)
-    (add-hook 'rust-mode-hook 'racer-mode)
-    (add-hook 'racer-mode-hook 'eldoc-mode))
-
-  (defun prelude-rust-mode-defaults ()
-    (unless (featurep 'prelude-lsp)
-      (local-set-key (kbd "C-c C-d") 'racer-describe)
-      (local-set-key (kbd "C-c .") 'racer-find-definition)
-      (local-set-key (kbd "C-c ,") 'pop-tag-mark))
-
-    (setq lsp-rust-server 'rust-analyzer)
-
-    ;; TODO: temporarily disable this checker as it tends to fail due
-    ;; to the versions discrepancy.
-    (setq-default flycheck-disabled-checkers '(rust-cargo))
-
-    ;; Prevent #! from chmodding rust files to be executable
-    (remove-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-    ;; CamelCase aware editing operations
-    (subword-mode +1))
-
-  (setq prelude-rust-mode-hook 'prelude-rust-mode-defaults)
-
-  (add-hook 'rust-mode-hook (lambda ()
-                              (run-hooks 'prelude-rust-mode-hook))))
+(add-hook 'rust-mode-hook (lambda ()
+                            (run-hooks 'prelude-rust-hook)))
 
 (provide 'prelude-rust)
 ;;; prelude-rust.el ends here
