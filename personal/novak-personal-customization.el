@@ -24,12 +24,9 @@
 
 ;;; Code:
 
-(put 'projectile-test-suffix-function 'safe-local-variable (lambda (_) t))
+(prelude-require-package 'color-theme-sanityinc-tomorrow)
 
-;; Load lighter theme
-;; (disable-theme 'zenburn)
-;; (prelude-require-package 'spacemacs-theme)
-;; (load-theme 'spacemacs-light)
+(put 'projectile-test-suffix-function 'safe-local-variable (lambda (_) t))
 
 (provide 'novak-personal-customization)
 ;;; novak-personal-customization.el ends here
