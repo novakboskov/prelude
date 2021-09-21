@@ -1,6 +1,6 @@
-;;; novak-personal-customization.el --- Novak personal customization  -*- lexical-binding: t; -*-
+;;; prelude-more-shell.el --- Additional Shell mode settings  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2016  Novak Boškov
+;; Copyright (C) 2021  Novak Boškov
 
 ;; Author: Novak Boškov <gnovak.boskov@gmail.com>
 ;; Keywords:
@@ -16,21 +16,25 @@
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
-;; Novak personal customization
+;; Additional Shell mode settigns
 
 ;;; Code:
 
-(prelude-require-package 'color-theme-sanityinc-tomorrow)
+(prelude-require-packages '(lsp-mode
+                            lsp-ui))
 
-;; set the default theme
-(disable-theme 'zenburn)
-(load-theme 'sanityinc-tomorrow-eighties t)
+(defun prelude-more-shell-mode-defaults ()
+  "Default shell settings."
+  (lsp))
 
-(put 'projectile-test-suffix-function 'safe-local-variable (lambda (_) t))
+(setq prelude-more-shell-mode-hook 'prelude-more-shell-mode-defaults)
 
-(provide 'novak-personal-customization)
-;;; novak-personal-customization.el ends here
+(add-hook 'sh-mode-hook (lambda ()
+                          (run-hooks 'prelude-more-shell-mode-hook)))
+
+(provide 'prelude-more-shell)
+;;; prelude-more-shell.el ends here
