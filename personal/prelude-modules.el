@@ -45,3 +45,4 @@
 (require 'prelude-more-yasnippet)
 (require 'prelude-more-shell)
 (require 'prelude-more-hledger-mode)
+(require 'prelude-more-p4)
