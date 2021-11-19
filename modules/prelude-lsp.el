@@ -52,5 +52,8 @@
 (setq lsp-ui-peek-enable t)
 (setq lsp-ui-peek-always-show t)
 
+;; Novak's specific settings
+(setq lsp-lens-enable nil)
+
 (provide 'prelude-lsp)
 ;;; prelude-lsp.el ends here

@@ -46,3 +46,4 @@
 (require 'prelude-more-shell)
 (require 'prelude-more-hledger-mode)
 (require 'prelude-more-p4)
+(require 'prelude-more-terminal)
