@@ -54,6 +54,8 @@
 
 ;; Novak's specific settings
 (setq lsp-lens-enable nil)
+(setq lsp-ui-doc-show-with-cursor t)
+(setq lsp-ui-doc-include-signature t)
 
 (provide 'prelude-lsp)
 ;;; prelude-lsp.el ends here
