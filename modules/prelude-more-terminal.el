@@ -32,13 +32,16 @@
                              (setq-local global-hl-line-mode nil)))
 
 (defun prelude-more-vterm-mode-hook ()
-  "Remove prelude-mode keybindings that conflict with vterm-mode."
+  "Remove prelude-mode keybindings that conflict with vterm-mode and other setup."
   (let ((oldmap (cdr (assoc 'prelude-mode minor-mode-map-alist)))
         (newmap (make-sparse-keymap)))
     (set-keymap-parent newmap oldmap)
     (define-key newmap (kbd "C-a") nil)
     (make-local-variable 'minor-mode-overriding-map-alist)
-    (push `(prelude-mode . ,newmap) minor-mode-overriding-map-alist)))
+    (push `(prelude-mode . ,newmap) minor-mode-overriding-map-alist))
+
+  ;; Decrease vterm-mode lag
+  (setq vterm-timer-delay 0.01))
 
 (add-hook 'vterm-mode-hook 'prelude-more-vterm-mode-hook)
 
