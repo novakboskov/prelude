@@ -22,7 +22,7 @@
 ;; (require 'prelude-elixir)
 (require 'prelude-go)
 ;; (require 'prelude-haskell)
-(require 'prelude-js)
+;; (require 'prelude-js)
 (require 'prelude-latex)
 (require 'prelude-lisp)
 (require 'prelude-lsp)
@@ -48,3 +48,4 @@
 (require 'prelude-more-p4)
 (require 'prelude-more-terminal)
 (require 'prelude-more-ess)
+(require 'prelude-more-lxc)

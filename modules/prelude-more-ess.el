@@ -27,5 +27,13 @@
 (prelude-require-packages '(ess
                             polymode))
 
+(defun prelude-more-ess-lsp ()
+  (lsp))
+
+(setq prelude-more-ess-lsp-hook 'prelude-more-ess-lsp)
+
+(add-hook 'ess-mode-hook (lambda ()
+                           (run-hooks 'prelude-more-ess-lsp-hook)))
+
 (provide 'prelude-more-ess)
 ;;; prelude-more-ess.el ends here
