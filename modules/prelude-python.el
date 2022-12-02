@@ -39,7 +39,8 @@
 ;; Code navigation, documentation lookup and completion for Python
 (prelude-require-packages '(virtualenvwrapper
                             lsp-mode
-                            lsp-ui))
+                            lsp-ui
+                            lsp-pyright))
 
 (defcustom prelude-python-mode-set-encoding-automatically nil
   "Non-nil values enable auto insertion of '# coding: utf-8' on python buffers."
