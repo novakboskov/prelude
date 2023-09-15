@@ -91,6 +91,9 @@
   (setq org-agenda-include-diary t)
   (setq org-html-validation-link nil)
 
+  ;; Set the default length of the line
+  (setq fill-column 100)
+
   ;; some org-mode local key bindings
   (local-set-key (kbd "C-c h i") 'counsel-org-goto)
 

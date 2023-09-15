@@ -28,9 +28,15 @@
 
 ;; set the default theme
 (disable-theme 'zenburn)
-(load-theme 'sanityinc-tomorrow-eighties t)
+(load-theme 'modus-operandi t)
+
+;; Allow simultaneous editing. Needed on a Mac when using
+(setq revert-without-query '(".*"))
 
 (put 'projectile-test-suffix-function 'safe-local-variable (lambda (_) t))
+
+;; Always switch to the compilation buffer
+(add-hook 'compilation-finish-functions 'switch-to-buffer-other-window 'compilation)
 
 (provide 'novak-personal-customization)
 ;;; novak-personal-customization.el ends here

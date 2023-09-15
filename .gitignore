@@ -45,3 +45,4 @@ transient/
 var/
 .cache/
 .lsp-session*
+/eln-cache/
