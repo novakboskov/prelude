@@ -49,3 +49,4 @@
 (require 'prelude-more-terminal)
 (require 'prelude-more-ess)
 (require 'prelude-more-lxc)
+(require 'prelude-more-copilot)
