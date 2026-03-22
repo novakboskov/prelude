@@ -1,6 +1,6 @@
 ;;; prelude-erc.el --- Emacs Prelude: ERC mode configuration.
 ;;
-;; Copyright © 2011-2021 Bozhidar Batsov
+;; Copyright © 2011-2026 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -64,9 +64,6 @@
     (mkdir erc-log-channels-directory t))
 
 (setq erc-save-buffer-on-part t)
-;; FIXME - this advice is wrong and is causing problems on Emacs exit
-;; (defadvice save-buffers-kill-emacs (before save-logs (arg) activate)
-;;   (save-some-buffers t (lambda () (when (eq major-mode 'erc-mode) t))))
 
 ;; truncate long irc buffers
 (erc-truncate-mode +1)
@@ -133,9 +130,9 @@ that can occur between two notifications.  The default is
   "Connect to IRC?"
   (interactive)
   (when (y-or-n-p "Do you want to start IRC? ")
-    (when prelude-new-irc-persp
+    (when (and prelude-new-irc-persp (fboundp 'persp-switch))
       (persp-switch "IRC"))
-    (mapcar 'connect-to-erc my-fav-irc)))
+    (mapc #'connect-to-erc my-fav-irc)))
 
 (defun filter-server-buffers ()
   (delq nil
@@ -146,13 +143,13 @@ that can occur between two notifications.  The default is
 (defun stop-irc ()
   "Disconnects from all irc servers."
   (interactive)
-  (when prelude-new-irc-persp
+  (when (and prelude-new-irc-persp (fboundp 'persp-switch))
     (persp-switch "IRC"))
   (dolist (buffer (filter-server-buffers))
     (message "Server buffer: %s" (buffer-name buffer))
     (with-current-buffer buffer
       (erc-quit-server bye-irc-message)))
-  (when prelude-new-irc-persp
+  (when (and prelude-new-irc-persp (fboundp 'persp-kill))
     (persp-kill "IRC")))
 
 ;; prelude more

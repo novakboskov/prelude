@@ -1,6 +1,6 @@
 ;;; prelude-common-lisp.el --- Emacs Prelude: lisp-mode and SLIME config.
 ;;
-;; Copyright © 2011-2021 Bozhidar Batsov
+;; Copyright © 2011-2026 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -65,8 +65,7 @@
   ;; Add fancy slime contribs
   (setq slime-contribs '(slime-fancy slime-cl-indent))
 
-  (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol
-        slime-fuzzy-completion-in-place t
+  (setq slime-complete-symbol-function 'slime-flex-completions
         slime-enable-evaluate-in-emacs t
         slime-autodoc-use-multiline-p t)
 

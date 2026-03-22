@@ -1,6 +1,6 @@
 ;;; prelude-python.el --- Emacs Prelude: python.el configuration.
 ;;
-;; Copyright © 2011-2021 Bozhidar Batsov
+;; Copyright © 2011-2026 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -9,10 +9,9 @@
 
 ;;; Commentary:
 
-;; Enhanced configuration for python.el (the latest and greatest
-;; Python mode Emacs has to offer).  Most notably Prelude leverages
-;; anaconda mode to provide code navigation, documentation lookup and
-;; completion for Python.
+;; Configuration for Python programming.  Uses python-ts-mode
+;; (tree-sitter) when available and LSP for code navigation,
+;; completion and diagnostics.
 
 ;;; License:
 
@@ -33,7 +32,6 @@
 
 ;;; Code:
 
-(require 'electric)
 (require 'prelude-programming)
 
 ;; Code navigation, documentation lookup and completion for Python
@@ -41,6 +39,10 @@
                             lsp-mode
                             lsp-ui
                             lsp-pyright))
+
+;; Use python-ts-mode when the tree-sitter grammar is available
+(when (treesit-ready-p 'python t)
+  (add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode)))
 
 (defcustom prelude-python-mode-set-encoding-automatically nil
   "Non-nil values enable auto insertion of '# coding: utf-8' on python buffers."
@@ -109,6 +111,9 @@
   (add-hook 'post-self-insert-hook
             #'electric-layout-post-self-insert-function nil 'local)
 
+  (eldoc-mode +1)
+  (prelude-lsp-enable))
+
   (when prelude-python-mode-set-encoding-automatically
     (add-hook 'after-save-hook 'prelude-python-mode-set-encoding nil 'local))
 
@@ -124,6 +129,8 @@
 
 (add-hook 'python-mode-hook (lambda ()
                               (run-hooks 'prelude-python-mode-hook)))
+(add-hook 'python-ts-mode-hook (lambda ()
+                                 (run-hooks 'prelude-python-mode-hook)))
 
 (defun projectile-pyenv-mode-set ()
   "Set pyenv version matching project name.

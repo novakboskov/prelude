@@ -1,6 +1,6 @@
 ;;; prelude-lua.el --- Emacs Prelude: Lua programming configuration.
 ;;
-;; Copyright © 2011-2021 Bozhidar Batsov
+;; Copyright © 2011-2026 Bozhidar Batsov
 ;;
 ;; Author: Xiongfei Shi <xiongfei.shi@icloud.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -46,10 +46,18 @@
   (define-key lua-mode-map (kbd "C-c C-r") 'lua-send-region)
   (define-key lua-mode-map (kbd "C-c C-z") 'lua-show-process-buffer))
 
-(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 (add-to-list 'auto-mode-alist '("\\.lua\\'" . lua-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
+(defun prelude-lua-mode-defaults ()
+  (subword-mode +1)
+  (prelude-lsp-enable))
+
+(setq prelude-lua-mode-hook 'prelude-lua-mode-defaults)
+
+(add-hook 'lua-mode-hook (lambda ()
+                           (run-hooks 'prelude-lua-mode-hook)))
+
 (provide 'prelude-lua)
 
-;;; prelude-lua ends here
+;;; prelude-lua.el ends here

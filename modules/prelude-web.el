@@ -1,6 +1,6 @@
 ;;; prelude-web.el --- Emacs Prelude: web template support
 ;;
-;; Copyright © 2011-2021 Bozhidar Batsov
+;; Copyright © 2011-2026 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -42,9 +42,19 @@
 (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.njk\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jinja2?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.svelte\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist
-'("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode))
+             '("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode))
+
+;; sensible indentation defaults
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-css-indent-offset 2)
+(setq web-mode-code-indent-offset 2)
 
 ;; make web-mode play nice with smartparens
 (setq web-mode-enable-auto-pairing nil)
@@ -61,7 +71,10 @@
   (sp-local-tag "#" "<%# " " %>"))
 
 (with-eval-after-load 'web-mode
-  (defun prelude-web-mode-defaults ())
+  (defun prelude-web-mode-defaults ()
+    (subword-mode +1)
+    (run-hooks 'prelude-prog-mode-hook))
+
   (setq prelude-web-mode-hook 'prelude-web-mode-defaults)
 
   (add-hook 'web-mode-hook (lambda ()

@@ -1,6 +1,6 @@
 ;;; prelude-perl.el --- Emacs Prelude: decent Perl coding settings.
 ;;
-;; Copyright © 2011-2021 Bozhidar Batsov
+;; Copyright © 2011-2026 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -35,7 +35,7 @@
 ;; use cperl-mode instead of perl-mode
 (defalias 'perl-mode 'cperl-mode)
 
-(define-key 'help-command "P" 'cperl-perldoc)
+(define-key 'help-command (kbd "P") 'cperl-perldoc)
 
 (defun prelude-cperl-mode-defaults ()
   (setq cperl-indent-level 4)
@@ -56,7 +56,8 @@
 
   (set-face-background 'cperl-array-face nil)
   (set-face-background 'cperl-hash-face nil)
-  (setq cperl-invalid-face nil))
+  (setq cperl-invalid-face nil)
+  (subword-mode +1))
 
 (setq prelude-cperl-mode-hook 'prelude-cperl-mode-defaults)
 

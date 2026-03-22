@@ -1,6 +1,6 @@
 ;;; prelude-racket.el --- Emacs Prelude: Racket programming support.
 ;;
-;; Copyright © 2011-2021 Bozhidar Batsov
+;; Copyright © 2011-2026 Bozhidar Batsov
 ;;
 ;; Author: Xiongfei Shi <xiongfei.shi@icloud.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -36,17 +36,20 @@
 
 (with-eval-after-load 'racket-mode
   (define-key racket-mode-map (kbd "M-RET") 'racket-run)
-  (define-key racket-mode-map (kbd "M-.") 'racket-repl-visit-definition)
+  (define-key racket-mode-map (kbd "M-.") 'racket-repl-visit-definition))
 
-  ;; Enable the common Lisp coding hook
-  (add-hook 'racket-mode-hook (lambda () (run-hooks 'prelude-lisp-coding-hook)))
+(add-to-list 'auto-mode-alist '("\\.rkt[dl]?\\'" . racket-mode))
 
-  (add-hook 'racket-mode-hook #'racket-unicode-input-method-enable)
-  (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
+(defun prelude-racket-mode-defaults ()
+  (run-hooks 'prelude-lisp-coding-hook)
+  (racket-unicode-input-method-enable))
 
-(add-to-list 'auto-mode-alist '("\\.rkt?\\'" . racket-mode))
-(add-to-list 'auto-mode-alist '("\\.rkt\\'" . racket-mode))
+(setq prelude-racket-mode-hook 'prelude-racket-mode-defaults)
+
+(add-hook 'racket-mode-hook (lambda ()
+                              (run-hooks 'prelude-racket-mode-hook)))
+(add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable)
 
 (provide 'prelude-racket)
 
-;;; prelude-racket ends here
+;;; prelude-racket.el ends here

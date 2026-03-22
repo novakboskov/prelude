@@ -1,6 +1,6 @@
 ;;; prelude-modules.el --- A listing of modules to load on startup
 ;;
-;; Copyright © 2011-2021 Bozhidar Batsov
+;; Copyright © 2011-2026 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -42,8 +42,8 @@
 ;;; General productivity tools
 
 ;; (require 'prelude-ido) ;; Supercharges Emacs completion for C-x C-f and more
-(require 'prelude-ivy) ;; A mighty modern alternative to ido
-;; (require 'prelude-selectrum) ;; A powerful, yet simple, alternative to ivy
+;; (require 'prelude-ivy) ;; A mighty modern alternative to ido
+(require 'prelude-vertico) ;; A powerful, yet simple, alternative to ivy
 ;; (require 'prelude-helm) ;; Interface for narrowing and search
 (require 'prelude-helm-everywhere) ;; Enable Helm everywhere
 (require 'prelude-company)
@@ -79,7 +79,8 @@
 (require 'prelude-js)
 ;; (require 'prelude-latex)
 (require 'prelude-lisp) ;; Common setup for Lisp-like languages
-(require 'prelude-lsp) ;; Base setup for the Language Server Protocol
+;; (require 'prelude-literate-programming) ;; Setup for Literate Programming
+;; (require 'prelude-lsp-mode) ;; lsp-mode and lsp-ui setup (loaded on demand when prelude-lsp-client is 'lsp-mode)
 ;; (require 'prelude-lua)
 ;; (require 'prelude-ocaml)
 (require 'prelude-perl)
@@ -97,7 +98,7 @@
 (require 'prelude-yaml)
 
 ;;; Misc
-(require 'prelude-erc) ;; A popular Emacs IRC client (useful if you're still into Freenode)
+;; (require 'prelude-erc) ;; A popular Emacs IRC client
 
 (provide 'prelude-modules)
 ;;; prelude-modules.el ends here

@@ -1,6 +1,6 @@
-;;; prelude-ts.el --- Emacs Prelude: Typescript programming support.
+;;; prelude-ts.el --- Emacs Prelude: TypeScript programming support.
 ;;
-;; Copyright © 2011-2021 LEE Dongjun
+;; Copyright © 2023-2026 LEE Dongjun
 ;;
 ;; Author: LEE Dongjun <redongjun@gmail.com>
 
@@ -8,7 +8,9 @@
 
 ;;; Commentary:
 
-;; Some basic configuration for Typescript development.
+;; Configuration for TypeScript development.  Uses
+;; typescript-ts-mode (tree-sitter) when available and LSP for
+;; code intelligence.
 
 ;;; License:
 
@@ -30,30 +32,22 @@
 ;;; Code:
 
 (require 'prelude-programming)
-(prelude-require-packages '(tide))
 
-(require 'typescript-mode)
+;; Use typescript-ts-mode when the tree-sitter grammar is available
+(when (treesit-ready-p 'typescript t)
+  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode)))
 
-(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+(defun prelude-ts-mode-defaults ()
+  (subword-mode +1)
+  (prelude-lsp-enable))
 
-(with-eval-after-load 'typescript-mode
-  (defun prelude-ts-mode-defaults ()
-    (interactive)
-    (tide-setup)
-    (flycheck-mode +1)
-    (setq flycheck-check-syntax-automatically '(save mode-enabled))
-    (eldoc-mode +1)
-    (tide-hl-identifier-mode +1))
+(setq prelude-ts-mode-hook 'prelude-ts-mode-defaults)
 
-  ;; formats the buffer before saving
-  (add-hook 'before-save-hook
-            (lambda ()
-              (when prelude-format-on-save
-                (tide-format-before-save))))
-
-  (setq prelude-ts-mode-hook 'prelude-ts-mode-defaults)
-
-  (add-hook 'typescript-mode-hook (lambda () (run-hooks 'prelude-ts-mode-hook))))
+(add-hook 'typescript-ts-mode-hook (lambda ()
+                                     (run-hooks 'prelude-ts-mode-hook)))
+(add-hook 'tsx-ts-mode-hook (lambda ()
+                              (run-hooks 'prelude-ts-mode-hook)))
 
 (provide 'prelude-ts)
 

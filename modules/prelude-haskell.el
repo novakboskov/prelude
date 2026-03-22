@@ -1,6 +1,6 @@
 ;;; prelude-haskell.el --- Emacs Prelude: Nice config for Haskell programming.
 ;;
-;; Copyright © 2011-2021 Bozhidar Batsov
+;; Copyright © 2011-2026 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -42,7 +42,8 @@
     (subword-mode +1)
     (eldoc-mode +1)
     (haskell-indentation-mode +1)
-    (interactive-haskell-mode +1))
+    (interactive-haskell-mode +1)
+    (prelude-lsp-enable))
 
   (setq prelude-haskell-mode-hook 'prelude-haskell-mode-defaults)
   (add-hook 'haskell-mode-hook (lambda ()

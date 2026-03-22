@@ -31,11 +31,22 @@
 (require 'prelude-programming)
 
 (prelude-require-packages '(go-mode
-                            lsp-mode
-                            lsp-ui))
+                            gotest))
+
+;; Use go-ts-mode when the tree-sitter grammar is available
+(when (treesit-ready-p 'go t)
+  (add-to-list 'major-mode-remap-alist '(go-mode . go-ts-mode)))
 
 ;; Ignore go test -c output files
 (add-to-list 'completion-ignored-extensions ".test")
+
+(define-key 'help-command (kbd "G") 'godoc)
+
+;; Fix: super-save will cause go files to be saved when lsp-mode does
+;; certain things, triggering lsp-format-buffer. This causes, inter alia,
+;; commas to disappear when typing go function invocations
+(add-to-list 'super-save-predicates
+             (lambda () (not (eq major-mode 'go-mode))))
 
 (with-eval-after-load 'go-mode
   (defun prelude-go-mode-defaults ()
@@ -43,13 +54,8 @@
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
     (add-hook 'before-save-hook #'lsp-organize-imports t t)
 
-    ;; For function arguments completion and such
-    (yas-minor-mode)
-    (setq company-idle-delay 0)
-    (setq company-minimum-prefix-length 1)
-
-    ;; We don't need flycheck as lsp-mode handles it
-    (flycheck-mode nil)
+    ;; format before save
+    (add-hook 'before-save-hook #'gofmt-before-save nil t)
 
     ;; stop whitespace being highlighted
     (whitespace-toggle-options '(tabs))
@@ -57,12 +63,19 @@
     ;; CamelCase aware editing operations
     (subword-mode +1))
 
+  ;; if yas is present, this enables yas-global-mode
+  ;; which provides completion via company
+  (if (fboundp 'yas-global-mode)
+      (yas-global-mode))
+
+  (add-hook 'go-mode-hook #'prelude-lsp-enable)
+  (add-hook 'go-ts-mode-hook #'prelude-lsp-enable)
+
   (setq prelude-go-mode-hook 'prelude-go-mode-defaults)
-
-  (add-hook 'go-mode-hook #'lsp-deferred)
-
   (add-hook 'go-mode-hook (lambda ()
-                            (run-hooks 'prelude-go-mode-hook))))
+                            (run-hooks 'prelude-go-mode-hook)))
+  (add-hook 'go-ts-mode-hook (lambda ()
+                               (run-hooks 'prelude-go-mode-hook))))
 
 (provide 'prelude-go)
 ;;; prelude-go.el ends here

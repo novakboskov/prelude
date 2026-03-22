@@ -1,6 +1,6 @@
 ;;; prelude-custom.el --- Emacs Prelude: Prelude's customizable variables.
 ;;
-;; Copyright © 2011-2021 Bozhidar Batsov
+;; Copyright © 2011-2026 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -66,6 +66,11 @@ or desktop environments that make heavy use of them."
   :type 'boolean
   :group 'prelude)
 
+(defcustom prelude-undo-tree t
+  "Non-nil values enable Prelude's undo-tree integration."
+  :type 'boolean
+  :group 'prelude)
+
 (defcustom prelude-clean-whitespace-on-save t
   "Cleanup whitespace from file before it's saved.
 Will only occur if `prelude-whitespace' is also enabled."
@@ -115,6 +120,25 @@ Only modes that don't derive from `prog-mode' should be listed here."
 (defcustom prelude-theme 'zenburn
   "The default color theme, change this in your /personal/preload config."
   :type 'symbol
+  :group 'prelude)
+
+(defcustom prelude-projectile t
+  "Non-nil values enable Prelude's Projectile integration."
+  :type 'boolean
+  :group 'prelude)
+
+(defcustom prelude-hippie-expand t
+  "Non-nil values enable Prelude's hippie-expand support."
+  :type 'boolean
+  :group 'prelude)
+
+(defcustom prelude-lsp-client 'eglot
+  "The LSP client to use in programming modes.
+Eglot is built into Emacs 29+ and requires no extra packages.
+Set to `lsp-mode' if you prefer lsp-mode with lsp-ui (peek
+definitions, sideline diagnostics, etc.)."
+  :type '(choice (const :tag "Eglot (built-in)" eglot)
+                 (const :tag "LSP Mode" lsp-mode))
   :group 'prelude)
 
 (provide 'prelude-custom)
