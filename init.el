@@ -39,6 +39,12 @@
 ;; You may delete these explanatory comments.
                                         ;(package-initialize)
 
+;; Novak: temporary fix
+(defun treesit-ready-p (&rest args)
+  "Compatibility shim for Prelude on Emacs 31.
+Ignores any number of ARGS and returns non-nil if tree-sitter is available."
+  (and (fboundp 'treesit-available-p)
+       (treesit-available-p)))
 
 (defvar prelude-user
   (getenv

@@ -46,26 +46,27 @@
         c-basic-offset 4)
   (c-set-offset 'substatement-open 0)
   (subword-mode +1)
-  (prelude-lsp-enable))
+  (prelude-lsp-enable)
 
-          (c-add-style
-           "linux-tabs-only"
-           '("linux" (c-offsets-alist
-                      (arglist-cont-nonempty
-                       c-lineup-gcc-asm-reg
-                       c-lineup-arglist-tabs-only))))
+  (c-add-style
+   "linux-tabs-only"
+   '("linux" (c-offsets-alist
+              (arglist-cont-nonempty
+               c-lineup-gcc-asm-reg
+               c-lineup-arglist-tabs-only))))
 
-          (setq indent-tabs-mode t)
-          (setq show-trailing-whitespace t)
-          (c-set-style "linux-tabs-only")
+  (setq indent-tabs-mode t)
+  (setq show-trailing-whitespace t)
+  (c-set-style "linux-tabs-only")
 
-          ;; Don't highlight tab through whitespace-mode
-          (when (boundp 'whitespace-style)
-            (setq-local whitespace-style
-                        (cl-set-difference whitespace-style '(tabs))))
-          (whitespace-mode -1)
-          (whitespace-mode 1))
-      (setq which-function-mode t))))
+  ;; Don't highlight tab through whitespace-mode
+  (when (boundp 'whitespace-style)
+    (setq-local whitespace-style
+                (cl-set-difference whitespace-style '(tabs))))
+  (whitespace-mode -1)
+  (whitespace-mode 1)
+
+  (setq which-function-mode t))
 
 (defun prelude-more-ccls ()
   (setq lsp-prefer-flymake nil)

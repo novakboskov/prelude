@@ -112,7 +112,7 @@
             #'electric-layout-post-self-insert-function nil 'local)
 
   (eldoc-mode +1)
-  (prelude-lsp-enable))
+  (prelude-lsp-enable)
 
   (when prelude-python-mode-set-encoding-automatically
     (add-hook 'after-save-hook 'prelude-python-mode-set-encoding nil 'local))
