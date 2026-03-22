@@ -50,3 +50,6 @@
 (require 'prelude-more-ess)
 (require 'prelude-more-lxc)
 (require 'prelude-more-copilot)
+(require 'prelude-more-gptel)
+(require 'prelude-more-aider)
+(require 'prelude-more-remote)

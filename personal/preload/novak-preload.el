@@ -9,7 +9,7 @@
 (setq bookmark-save-flag 1)
 
 ;; Set ispell backend
-(setq personal/user-ispell '("aspell" "en_US"))
+(setq personal/user-ispell '("hunspell" ""))
 
 ;; set default erc nick
 (setq erc-nick "novakboskov")
@@ -24,3 +24,6 @@
 (setq prelude-minimalistic-ui t)
 
 (setq menu-bar-mode -1)
+
+(disable-theme 'zenburn)
+(setq prelude-theme 'modus-operandi)

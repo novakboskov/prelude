@@ -26,15 +26,17 @@
 
 (prelude-require-packages '(dash
                             s
-                            editorconfig))
-
-(add-to-list 'load-path "~/.emacs.d/copilot.el/")
+                            editorconfig
+                            copilot))
 
 (add-hook 'prog-mode-hook 'copilot-mode)
 
 (defun prelude-more-copilot-defaults ()
   "Default setup of Copilot."
-  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion))
+  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "s-m n") 'copilot-next-completion)
+  (define-key copilot-completion-map (kbd "s-m p") 'copilot-previous-completion)
+  (define-key copilot-completion-map (kbd "s-m l") 'copilot-accept-completion-by-line))
 
 (setq prelude-more-copilot-hook 'prelude-more-copilot-defaults)
 

@@ -27,8 +27,9 @@
 (prelude-require-package 'color-theme-sanityinc-tomorrow)
 
 ;; set the default theme
-(disable-theme 'zenburn)
-(load-theme 'modus-operandi t)
+;; (disable-theme 'zenburn)
+;; (setq prelude-theme 'modus-vivendi)
+;; (load-theme 'modus-operandi t)
 
 ;; Allow simultaneous editing. Needed on a Mac when using
 (setq revert-without-query '(".*"))
